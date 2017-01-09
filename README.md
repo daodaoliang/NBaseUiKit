@@ -16,7 +16,7 @@ DEPENDPATH += $$PWD/../bin
 include($$PWD/../NBaseUiKit/NBaseUiKit_inc.pri)
 ```
 
-** 具体的路径请按照你的项目情况进行修改**
+**具体的路径请按照你的项目情况进行修改**
 
 ## 1. 如何运行测试例子
 
@@ -360,6 +360,7 @@ include($$PWD/../NBaseUiKit/NBaseUiKit_inc.pri)
 ## 5. 若是有啥不对的地方随时联系我
 
 QQ: 88341189
+
 Email: daodaoliang@yeah.net
 
 

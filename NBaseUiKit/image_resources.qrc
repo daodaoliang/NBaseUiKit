@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/shadow_bottom.png</file>
+        <file>img/shadow_corner1.png</file>
+        <file>img/shadow_corner2.png</file>
+        <file>img/shadow_corner3.png</file>
+        <file>img/shadow_corner4.png</file>
+        <file>img/shadow_left.png</file>
+        <file>img/shadow_right.png</file>
+        <file>img/shadow_top.png</file>
+        <file>img/window_shadow.png</file>
+        <file alias="wait_rolling">img/rolling.gif</file>
+        <file alias="upload">img/upload.png</file>
+        <file alias="upload_h">img/upload_hover.png</file>
+        <file alias="upload_p">img/upload_press.png</file>
+        <file alias="bg_l">img/bg_lock.png</file>
+        <file alias="bg_s">img/bg_setting.png</file>
+        <file alias="bg_h">img/bg_hover.png</file>
+        <file alias="lock">img/locked.png</file>
+        <file alias="unlock">img/unlock.png</file>
+        <file alias="unlock_h">img/unlock_hover.png</file>
+        <file alias="bg_t">img/bg_tool.png</file>
+        <file alias="check">img/checked.png</file>
+        <file alias="uncheck">img/delete.png</file>
+        <file alias="hover">img/hover.png</file>
+        <file alias="bright">img/brightness.png</file>
+        <file alias="image_bg">img/image.png</file>
+        <file alias="lock_t">img/locked_2.png</file>
+    </qresource>
+</RCC>

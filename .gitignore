@@ -1,0 +1,6 @@
+/NBaseUiKit.pro.user
+/.qmake.stash
+/bin
+/NBaseUiKit/*.Release
+/NBaseUiKit/*.Debug
+/NBaseUiKit/NBaseUiKit.pro.user

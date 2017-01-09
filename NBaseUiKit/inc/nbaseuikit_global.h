@@ -1,0 +1,12 @@
+#ifndef NBASEUIKIT_GLOBAL_H
+#define NBASEUIKIT_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(NBASEUIKIT_LIBRARY)
+#  define NBASEUIKITSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define NBASEUIKITSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // NBASEUIKIT_GLOBAL_H

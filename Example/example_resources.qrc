@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="miniImage">res/icon_sun.png</file>
+        <file alias="testImage">res/test.jpg</file>
+    </qresource>
+</RCC>

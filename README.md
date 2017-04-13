@@ -1,8 +1,27 @@
 # 基础UI组件使用说明
 
+```
+	作者: daodaoliang@yeah.net
+    版本: V1.0.17.0
+    时间: 2017年4月13日
+    联系QQ: 88341189
+```
+
 [TOC]
 
-## 0.如何添加项目
+## 1. 项目使用说明
+
+### 1.1 如何从源码构建组件
+
+|构建环境|环境说明|
+|:------:|:------:|
+|windows下|mingw-gcc编译器 + Qt5+|
+
+**PS1:** 在构建时在QtCreator中勾掉show build选项,编译运行即可,生成的文件在`bin`文件中;
+**PS2:** 你也可以直接使用我构建好的程序[点击下载17编译好的版本程序](http://download.csdn.net/detail/xiaoliang_1/9732371)
+
+
+### 1.2如何添加项目
 
 * 首先拷贝源码到你的工程文件目录;
 * 在你的项目 pro文件中添加:
@@ -18,11 +37,11 @@ include($$PWD/../NBaseUiKit/NBaseUiKit_inc.pri)
 
 **具体的路径请按照你的项目情况进行修改**
 
-## 1. 如何运行测试例子
+## 2. 如何运行测试例子
 
-打开工程文件`NBaseUiKit.pro`,然后在QtCreator中勾掉show build选项,编译运行即可,生成的文件在`bin`文件中;
+打开工程文件`NBaseUiKit.pro`,然后在QtCreator中勾掉show build选项,编译运行即可,生成的文件在`bin`文件中,直接运行`exe`文件即可;
 
-## 2. 测试用例
+## 3. 测试用例
 
 * 可移动窗体测试用例
 

@@ -1,7 +1,7 @@
 # 基础UI组件使用说明
 
 ```
-	作者: daodaoliang@yeah.net
+    作者: daodaoliang@yeah.net
     版本: V1.0.17.0
     时间: 2017年4月13日
     联系QQ: 88341189
@@ -18,6 +18,7 @@
 |windows下|mingw-gcc编译器 + Qt5+|
 
 **PS1:** 在构建时在QtCreator中勾掉show build选项,编译运行即可,生成的文件在`bin`文件中;
+
 **PS2:** 你也可以直接使用我构建好的程序[点击下载17编译好的版本程序](http://download.csdn.net/detail/xiaoliang_1/9732371)
 
 

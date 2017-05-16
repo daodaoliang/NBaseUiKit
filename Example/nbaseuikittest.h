@@ -146,6 +146,9 @@ private slots:
      */
     void on_pushButton_26_clicked();
 
+    /**
+     * @brief on_pushButton_27_clicked 倒计时按钮
+     */
     void on_pushButton_27_clicked();
 
 private:

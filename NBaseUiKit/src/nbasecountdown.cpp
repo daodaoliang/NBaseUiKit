@@ -35,6 +35,11 @@ void NBaseCountDown::startCountDown()
     timerId = startTimer(1000);
 }
 
+void NBaseCountDown::stopCountDown()
+{
+    close();
+}
+
 qreal NBaseCountDown::getWaveRadius() const
 {
     return waveRadius;
@@ -187,6 +192,7 @@ void NBaseCountDown::setCountDown(int value)
     tempGreen = coreColorEnd.green() - 140/changeStep;
     coreColorEnd.setGreen(tempGreen<0?0:tempGreen);
     if(countDown-- <= 0){
+        emit signalCountFinshed();
         close();
     }
 }

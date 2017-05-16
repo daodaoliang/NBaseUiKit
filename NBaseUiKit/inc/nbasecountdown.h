@@ -36,6 +36,11 @@ public:
     void startCountDown();
 
     /**
+     * @brief stopCountDown 结束倒计时
+     */
+    void stopCountDown();
+
+    /**
      * @brief getWaveRadius 获取波纹半径
      * @return
      */
@@ -65,6 +70,11 @@ signals:
      * @param paramWaveRadius 状态值
      */
     void signalWaveRadius(qreal paramWaveRadius);
+
+    /**
+     * @brief signalCountFinshed 倒计时结束信号
+     */
+    void signalCountFinshed();
 
 protected:
 

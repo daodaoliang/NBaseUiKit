@@ -357,6 +357,12 @@ include($$PWD/../NBaseUiKit/NBaseUiKit_inc.pri)
 * ~~双态按钮;~~
 * ~~头像生成按钮;~~
 * ~~点击波按钮~~
+* material风格 checkbox
+* material风格 dialog
+* material风格 progress
+* material风格 Tabs
+* material风格 Toggle
+* material风格 Circular Progress
 
 ## 4. changelog
 

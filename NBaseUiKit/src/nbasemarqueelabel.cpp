@@ -73,18 +73,16 @@ void NBaseMarqueeLabel::reset()
     }
 }
 
-void NBaseMarqueeLabel::setActive(bool active)
+void NBaseMarqueeLabel::setActive(bool paramActive)
 {
-    if (active == active)
+    if (this->active == paramActive)
     {
         return;
     }
-    if (active)
+    if (paramActive)
     {
         start();
-    }
-    else
-    {
+    } else {
         stop();
     }
 }

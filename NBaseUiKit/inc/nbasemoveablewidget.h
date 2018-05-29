@@ -15,8 +15,10 @@
 #include <QMouseEvent>
 #include <QStyleOption>
 #include <QPainter>
+#if defined(Q_OS_WIN)
 #include <windows.h>
 #include <windowsx.h>
+#endif
 #include "nbaseuikit_global.h"
 #include "nbasetoolbutton.h"
 
@@ -106,6 +108,7 @@ protected:
      */
     void paintEvent(QPaintEvent *event);
 
+#if defined(Q_OS_WIN)
     /**
      * @brief winEvent windows窗体事件
      * @param message
@@ -113,7 +116,7 @@ protected:
      * @return
      */
     bool winEvent(MSG *message, long *result);
-
+#endif
 private:
     /**
      * @brief region 鼠标指针修改

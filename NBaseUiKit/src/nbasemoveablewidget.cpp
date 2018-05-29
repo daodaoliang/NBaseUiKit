@@ -116,6 +116,7 @@ void NBaseMoveableWidget::paintEvent(QPaintEvent *event)
     NBaseToolButton::paintEvent(event);
 }
 
+#if defined(Q_OS_WIN)
 bool NBaseMoveableWidget::winEvent(MSG *message, long *result)
 {
     if(move_plan_ == PLANB){
@@ -153,6 +154,7 @@ bool NBaseMoveableWidget::winEvent(MSG *message, long *result)
         return false;
     }
 }
+#endif
 
 void NBaseMoveableWidget::region(const QPoint &cursorGlobalPoint)
 {

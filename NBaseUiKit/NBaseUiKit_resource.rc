@@ -5,8 +5,8 @@
 # endif
 
 VS_VERSION_INFO VERSIONINFO
-        FILEVERSION 1,0,17,0
-        PRODUCTVERSION 1,0,17,0
+        FILEVERSION 1,0,17,1
+        PRODUCTVERSION 1,0,17,1
 	FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
 	FILEFLAGS VS_FF_DEBUG
@@ -23,11 +23,11 @@ VS_VERSION_INFO VERSIONINFO
 			BEGIN
 				VALUE "CompanyName", "NS\0"
                                 VALUE "FileDescription", "界面基础组件\0"
-				VALUE "FileVersion", "1.0.17.0\0"
+				VALUE "FileVersion", "1.0.17.1\0"
 				VALUE "LegalCopyright", "@2016(daodaoliang@yeah.net)\0"
 				VALUE "OriginalFilename", "NBaseUiKit.dll\0"
 				VALUE "ProductName", "NBaseUiKit\0"
-				VALUE "ProductVersion", "1.0.17.0\0"
+				VALUE "ProductVersion", "1.0.17.1\0"
 			END
 		END
 		BLOCK "VarFileInfo"

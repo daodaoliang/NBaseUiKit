@@ -19,19 +19,17 @@ HEADERS  += \
     nbaseuikittest.h
 
 # 定义输出路径
-win32{
-    CONFIG += debug_and_release
-    CONFIG(release, debug|release) {
-            target_path = ./build_/dist
-        } else {
-            target_path = ./build_/debug
-        }
-        DESTDIR = ../bin
-        MOC_DIR = $$target_path/moc
-        RCC_DIR = $$target_path/rcc
-        UI_DIR = $$target_path/ui
-        OBJECTS_DIR = $$target_path/obj
-}
+CONFIG += debug_and_release
+CONFIG(release, debug|release) {
+        target_path = ./build_/dist
+    } else {
+        target_path = ./build_/debug
+    }
+DESTDIR = ../bin
+MOC_DIR = $$target_path/moc
+RCC_DIR = $$target_path/rcc
+UI_DIR = $$target_path/ui
+OBJECTS_DIR = $$target_path/obj
 
 # 引入测试类库
 LIBS += -L$$OUT_PWD/../bin/ -lNBaseUiKit

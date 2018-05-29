@@ -51,7 +51,7 @@ signals:
 
 public slots:
     void reset();
-    void setActive(bool active);
+    void setActive(bool paramActive);
     void setInterval(int msec);
     void start();
     void stop();

@@ -13,7 +13,7 @@ void NBaseMiniAppWidget::setPixmap(QPixmap pixmap)
     update();
 }
 
-void NBaseMiniAppWidget::enterEvent(QEvent *event)
+void NBaseMiniAppWidget::enterEvent(QEnterEvent *event)
 {
     setCursor(Qt::PointingHandCursor);
     NBaseMoveableWidget::enterEvent(event);

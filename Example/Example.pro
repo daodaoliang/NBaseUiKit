@@ -4,9 +4,15 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui widgets
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+CONFIG += c++17
+
+# 添加编译器标志以避免内部错误
+QMAKE_CXXFLAGS_DEBUG -= -std=gnu++1z
+QMAKE_CXXFLAGS_DEBUG += -std=c++17
+QMAKE_CXXFLAGS_RELEASE -= -std=gnu++1z
+QMAKE_CXXFLAGS_RELEASE += -std=c++17
 
 TARGET = NBaseUiKit_Example
 TEMPLATE = app
@@ -19,17 +25,7 @@ HEADERS  += \
     nbaseuikittest.h
 
 # 定义输出路径
-CONFIG += debug_and_release
-CONFIG(release, debug|release) {
-        target_path = ./build_/dist
-    } else {
-        target_path = ./build_/debug
-    }
 DESTDIR = ../bin
-MOC_DIR = $$target_path/moc
-RCC_DIR = $$target_path/rcc
-UI_DIR = $$target_path/ui
-OBJECTS_DIR = $$target_path/obj
 
 # 引入测试类库
 LIBS += -L$$OUT_PWD/../bin/ -lNBaseUiKit
@@ -38,7 +34,6 @@ include(../NBaseUiKit/NBaseUiKit_inc.pri)
 # 输出编译套件信息
 message(Qt version: $$[QT_VERSION])
 message(Qt is installed in $$[QT_INSTALL_PREFIX])
-message(the NBaseUiKit_Example will create in folder: $$target_path)
 
 RESOURCES += \
     example_resources.qrc

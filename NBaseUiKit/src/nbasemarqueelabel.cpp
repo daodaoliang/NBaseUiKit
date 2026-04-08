@@ -184,7 +184,7 @@ void NBaseMarqueeLabel::setDirection(NBaseMarqueeLabel::Direction param_direcito
     Q_EMIT directionChanged(mDirection);
 }
 
-void NBaseMarqueeLabel::enterEvent(QEvent *event)
+void NBaseMarqueeLabel::enterEvent(QEnterEvent *event)
 {
     mouseIn = true;
     if (active)

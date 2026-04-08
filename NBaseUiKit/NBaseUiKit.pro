@@ -11,7 +11,13 @@ TEMPLATE = lib
 
 DEFINES += NBASEUIKIT_LIBRARY
 
-CONFIG += c++11
+CONFIG += c++17
+
+# 添加编译器标志以避免内部错误
+QMAKE_CXXFLAGS_DEBUG -= -std=gnu++1z
+QMAKE_CXXFLAGS_DEBUG += -std=c++17
+QMAKE_CXXFLAGS_RELEASE -= -std=gnu++1z
+QMAKE_CXXFLAGS_RELEASE += -std=c++17
 
 # 引入源码
 include($$PWD/NBaseUiKit_src.pri)
@@ -28,16 +34,7 @@ RESOURCES += \
     image_resources.qrc
 
 # 定义输出路径
-CONFIG += debug_and_release
-CONFIG(release, debug|release) {
-        target_path = ./build_/dist
-    } else {
-        target_path = ./build_/debug
-    }
 DESTDIR = ../bin
-MOC_DIR = $$target_path/moc
-RCC_DIR = $$target_path/rcc
-OBJECTS_DIR = $$target_path/obj
 
 # 输出编译套件信息
 message(Qt version: $$[QT_VERSION])

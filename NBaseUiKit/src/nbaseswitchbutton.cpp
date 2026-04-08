@@ -1,5 +1,6 @@
 #include "nbaseswitchbutton.h"
 #include <QMouseEvent>
+#include <QPainterPath>
 
 NBaseSwitchButton::NBaseSwitchButton(QWidget *parent) : QWidget(parent)
 {
@@ -160,7 +161,7 @@ void NBaseSwitchButton::drawPressBackground(QPainter *painter)
     painter->setPen(QColor(72,72,72));
     QFont tempFont = QFont("微软雅黑",10,QFont::Bold);
     painter->setFont(tempFont);
-    painter->drawText((mState?width()/5*2:width()/5*3) - fontMetrics().width("开")/2,
+    painter->drawText((mState?width()/5*2:width()/5*3) - fontMetrics().horizontalAdvance("开")/2,
                       height()/2 + fontMetrics().height()/2,
                       mState?"开":"关");
 }

@@ -70,7 +70,7 @@ void WaitingSpinnerWidget::initialize() {
     _isSpinning = false;
 
     _timer = new QTimer(this);
-    connect(_timer, SIGNAL(timeout()), this, SLOT(rotate()));
+    connect(_timer, &QTimer::timeout, this, &WaitingSpinnerWidget::rotate);
     updateSize();
     updateTimer();
     hide();

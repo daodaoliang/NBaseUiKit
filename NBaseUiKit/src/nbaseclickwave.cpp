@@ -27,7 +27,7 @@ void NBaseClickWave::paintEvent(QPaintEvent *event)
         tempPen.setJoinStyle(Qt::RoundJoin);
         tempPen.setCapStyle(Qt::FlatCap);
         tempPainter.setPen(tempPen);
-        tempPainter.setRenderHint(QPainter::HighQualityAntialiasing);
+        tempPainter.setRenderHint(QPainter::Antialiasing);
         tempPainter.setOpacity(0.7);
         QRectF rectangle(pointX-waveRadius/2, pointY-waveRadius/2, waveRadius, waveRadius);
         tempPainter.drawEllipse(rectangle);

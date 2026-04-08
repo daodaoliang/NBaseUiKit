@@ -49,7 +49,7 @@ NBaseImageCropper::NBaseImageCropper(QWidget *parent, bool isCropBtn, bool isToo
         cropBtn->setFixedSize(80,80);
         cropBtn->setToolTip(tr("裁剪并上传图像"));
         tempLayout->addWidget(cropBtn,6,3);
-        connect(cropBtn,SIGNAL(clicked(bool)), this,SLOT(cropImage()));
+        connect(cropBtn, &QPushButton::clicked, this, &NBaseImageCropper::cropImage);
     }
     // 右边栏工具按钮
     if(showToolBtn){
@@ -64,7 +64,7 @@ NBaseImageCropper::NBaseImageCropper(QWidget *parent, bool isCropBtn, bool isToo
         ftsBtn->setFixedSize(50,50);
         ftsBtn->setToolTip(tr("固定4:3的比例"));
         tempLayout->addWidget(ftsBtn,2,6);
-        connect(ftsBtn,SIGNAL(clicked(bool)), this,SLOT(setFTProportion()));
+        connect(ftsBtn, &QPushButton::clicked, this, &NBaseImageCropper::setFTProportion);
 
         // 1:1 比例按钮
         ooBtn = new QPushButton(tr(""),this);
@@ -77,11 +77,11 @@ NBaseImageCropper::NBaseImageCropper(QWidget *parent, bool isCropBtn, bool isToo
         ooBtn->setFixedSize(50,50);
         ooBtn->setToolTip(tr("固定1:1的比例"));
         tempLayout->addWidget(ooBtn,3,6);
-        connect(ooBtn,SIGNAL(clicked(bool)), this,SLOT(setOOProportion()));
+        connect(ooBtn, &QPushButton::clicked, this, &NBaseImageCropper::setOOProportion);
     }
     // 布局设置
     tempLayout->setSpacing(0);
-    tempLayout->setMargin(0);
+    tempLayout->setContentsMargins(0, 0, 0, 0);
     setLayout(tempLayout);
 }
 

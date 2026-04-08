@@ -1,5 +1,6 @@
 #include "nbasecountdown.h"
 #include <QPainter>
+#include <QPainterPath>
 #include <QMouseEvent>
 #include <QDebug>
 #include <QPropertyAnimation>

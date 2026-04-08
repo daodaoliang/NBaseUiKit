@@ -23,7 +23,7 @@ void NBaseMoveableWidget::mousePressEvent(QMouseEvent *event)
         if(dir_ != NONE) {
             this->mouseGrabber();
         } else {
-            dragPosition_ = event->globalPos() - this->frameGeometry().topLeft();
+            dragPosition_ = event->globalPosition().toPoint() - this->frameGeometry().topLeft();
         }
     }
     NBaseToolButton::mousePressEvent(event);
@@ -32,7 +32,7 @@ void NBaseMoveableWidget::mousePressEvent(QMouseEvent *event)
 void NBaseMoveableWidget::mouseMoveEvent(QMouseEvent *event)
 {
     if(move_plan_ == PLANA){
-        QPoint gloPoint = event->globalPos();
+        QPoint gloPoint = event->globalPosition().toPoint();
         QRect rect = this->rect();
         QPoint tl = mapToGlobal(rect.topLeft());
         QPoint rb = mapToGlobal(rect.bottomRight());
@@ -87,7 +87,7 @@ void NBaseMoveableWidget::mouseMoveEvent(QMouseEvent *event)
                 }
                 if(isDragAble_) this->setGeometry(rMove);
             } else {
-                move(event->globalPos() - dragPosition_);
+                move(event->globalPosition().toPoint() - dragPosition_);
                 event->accept();
             }
         }
@@ -110,7 +110,7 @@ void NBaseMoveableWidget::mouseReleaseEvent(QMouseEvent *event)
 void NBaseMoveableWidget::paintEvent(QPaintEvent *event)
 {
     QStyleOption opt;
-    opt.init(this);
+    opt.initFrom(this);
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
     NBaseToolButton::paintEvent(event);

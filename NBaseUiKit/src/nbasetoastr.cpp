@@ -32,14 +32,14 @@ void NBaseToastr::toastr()
     animal->setStartValue(QPoint(startx,starty));
     animal->setEndValue(QPoint(startx,endy));
     animal->setEasingCurve(QEasingCurve::OutCubic);
-    connect(animal, SIGNAL(finished()), this, SLOT(animationFinished()));
+    connect(animal, &QPropertyAnimation::finished, this, &NBaseToastr::animationFinished);
     this->show();
     animal->start();
 }
 
 void NBaseToastr::animationFinished()
 {
-    QTimer::singleShot(400, this, SLOT(delSelf()));
+    QTimer::singleShot(400, this, &NBaseToastr::delSelf);
 }
 
 void NBaseToastr::delSelf()

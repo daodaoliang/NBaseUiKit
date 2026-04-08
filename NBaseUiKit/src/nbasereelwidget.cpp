@@ -1,17 +1,19 @@
 #include "nbasereelwidget.h"
 #include <QPainter>
+#include <QPainterPath>
+#include <QEasingCurve>
 
 
 NBaseReelWidget::NBaseReelWidget(QWidget *parent) : NBaseMoveableWidget(parent)
 {
     oriSize = QSize(0, 0);
-    connect(&animaExpan, SIGNAL(frameChanged(int)), SLOT(onExpansion()));
+    connect(&animaExpan, &QTimeLine::frameChanged, this, &NBaseReelWidget::onExpansion);
     animaExpan.setFrameRange(0, 100);
     animaExpan.setDuration(3000);
     bgColorbegin = QColor(255,250,250);
     bgColorEnd = QColor(209,227,219);
     bgCorner = QColor(90,76,76);
-    animaExpan.setCurveShape(QTimeLine::LinearCurve);
+    animaExpan.setEasingCurve(QEasingCurve::Linear);
     setIsDragAble(false);
 }
 

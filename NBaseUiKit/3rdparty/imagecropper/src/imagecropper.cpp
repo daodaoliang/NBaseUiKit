@@ -2,6 +2,7 @@
 
 #include <QMouseEvent>
 #include <QPainter>
+#include <QPainterPath>
 
 namespace {
 static const QSize WIDGET_MINIMUM_SIZE(300, 300);

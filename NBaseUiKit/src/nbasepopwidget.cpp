@@ -1,4 +1,5 @@
 #include "nbasepopwidget.h"
+#include <QApplication>
 
 NBasePopWidget::NBasePopWidget(QWidget *parent) : QWidget(parent)
 {
@@ -11,7 +12,9 @@ NBasePopWidget::NBasePopWidget(QWidget *parent) : QWidget(parent)
 void NBasePopWidget::showPopDialog(quint32 paramRemainTime)
 {
     mremainTime = paramRemainTime * 500;
-    this->move((desktop.availableGeometry().width()-this->width()),desktop.availableGeometry().height());
+    QScreen *screen = QApplication::primaryScreen();
+    QRect desktopGeometry = screen->availableGeometry();
+    this->move((desktopGeometry.width()-this->width()),desktopGeometry.height());
     if(!this->isVisible()){
         show();
         showAnimation();
@@ -27,7 +30,9 @@ void NBasePopWidget::closePopDialog()
 void NBasePopWidget::pausePopDialog()
 {
     if(animation != NULL){
-        this->move((desktop.availableGeometry().width()-this->width()),(desktop.availableGeometry().height()-this->height()));
+        QScreen *screen = QApplication::primaryScreen();
+        QRect desktopGeometry = screen->availableGeometry();
+        this->move((desktopGeometry.width()-this->width()),(desktopGeometry.height()-this->height()));
         animation->setPaused(true);
         mIsPause = true;
     }
@@ -47,20 +52,22 @@ void NBasePopWidget::closeAnimation()
 {
     if(!mIsPause){
         remainTimer->stop();
-        disconnect(remainTimer,SIGNAL(timeout()),this,SLOT(closeAnimation()));
+        disconnect(remainTimer,&QTimer::timeout,this,&NBasePopWidget::closeAnimation);
         delete remainTimer;
         remainTimer=NULL;
         animation->setStartValue(QPoint(this->x(),this->y()));
-        animation->setEndValue(QPoint((desktop.availableGeometry().width()-this->width()),desktop.availableGeometry().height()+50));
+        QScreen *screen = QApplication::primaryScreen();
+        QRect desktopGeometry = screen->availableGeometry();
+        animation->setEndValue(QPoint((desktopGeometry.width()-this->width()),desktopGeometry.height()+50));
         animation->start();
-        connect(animation,SIGNAL(finished()),this,SLOT(clearAll()));
+        connect(animation,&QPropertyAnimation::finished,this,&NBasePopWidget::clearAll);
     }
 }
 
 void NBasePopWidget::clearAll()
 {
     if(animation != NULL){
-        disconnect(animation,SIGNAL(finished()),this,SLOT(clearAll()));
+        disconnect(animation,&QPropertyAnimation::finished,this,&NBasePopWidget::clearAll);
         delete animation;
     }
     animation=NULL;
@@ -74,16 +81,18 @@ void NBasePopWidget::showAnimation()
         animation->setDuration(mremainTime);
         animation->setEasingCurve(QEasingCurve::OutElastic);
         animation->setStartValue(QPoint(this->x(),this->y()));
-        animation->setEndValue(QPoint((desktop.availableGeometry().width()-this->width()),(desktop.availableGeometry().height()-this->height())));
-        connect(animation,SIGNAL(valueChanged(QVariant)),this,SLOT(animationValueChanged(QVariant)));
+        QScreen *screen = QApplication::primaryScreen();
+        QRect desktopGeometry = screen->availableGeometry();
+        animation->setEndValue(QPoint((desktopGeometry.width()-this->width()),(desktopGeometry.height()-this->height())));
+        connect(animation,&QPropertyAnimation::valueChanged,this,&NBasePopWidget::animationValueChanged);
         animation->start();
         remainTimer=new QTimer();
-        connect(remainTimer,SIGNAL(timeout()),this,SLOT(closeAnimation()));
+        connect(remainTimer,&QTimer::timeout,this,&NBasePopWidget::closeAnimation);
         remainTimer->start(mremainTime*4);
     }
 }
 
-void NBasePopWidget::animationValueChanged(QVariant param_value)
+void NBasePopWidget::animationValueChanged(const QVariant &param_value)
 {
     QPoint tempValue = param_value.toPoint();
     Q_UNUSED(tempValue)

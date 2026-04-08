@@ -38,7 +38,7 @@ protected:
      * @brief enterEvent 时间处理函数
      * @param event
      */
-    void enterEvent(QEvent *event);
+    void enterEvent(QEnterEvent *event);
 
     /**
      * @brief leaveEvent 鼠标离开事件

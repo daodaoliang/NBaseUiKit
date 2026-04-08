@@ -6,7 +6,7 @@ NBaseLEDWidget::NBaseLEDWidget(QWidget *parent) : QWidget(parent)
     backCol = Qt::black;
     textMsg = "daodaoliang";
     numChar = textMsg.size();
-    length = fontMetrics().width(textMsg) + (numChar-1)*fontInfo().pointSize()/4;
+    length = fontMetrics().horizontalAdvance(textMsg) + (numChar-1)*fontInfo().pointSize()/4;
     typeEff = sliding;
     on = true;
     textOff = "";
@@ -128,7 +128,7 @@ void NBaseLEDWidget::setText(QString text)
     textMsg = text;
     textOn = text;
     numChar = textMsg.size();
-    length = fontMetrics().width(textMsg) + (numChar-1)*fontInfo().pointSize()/4;
+    length = fontMetrics().horizontalAdvance(textMsg) + (numChar-1)*fontInfo().pointSize()/4;
     update();
 }
 

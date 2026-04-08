@@ -36,8 +36,8 @@ public:
         BottomToTop = 1
     };
 public:
-    NBaseMarqueeLabel(QWidget * parent = 0, Qt::WindowFlags f = 0);
-    NBaseMarqueeLabel(const QString &text, QWidget *parent = 0, Qt::WindowFlags f = 0);
+    NBaseMarqueeLabel(QWidget * parent = 0, Qt::WindowFlags f = Qt::WindowFlags());
+    NBaseMarqueeLabel(const QString &text, QWidget *parent = 0, Qt::WindowFlags f = Qt::WindowFlags());
     virtual ~NBaseMarqueeLabel();
     int interval() const;
     bool isActive() const;
@@ -58,7 +58,7 @@ public slots:
     void setDirection(Direction param_direciton);
 
 protected:
-    virtual void enterEvent(QEvent *event);
+    virtual void enterEvent(QEnterEvent *event);
     virtual void leaveEvent(QEvent *event);
     virtual void resizeEvent(QResizeEvent *event);
     virtual void timerEvent(QTimerEvent *event);

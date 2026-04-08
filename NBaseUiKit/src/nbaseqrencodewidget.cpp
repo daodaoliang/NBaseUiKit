@@ -1,4 +1,5 @@
 #include "nbaseqrencodewidget.h"
+#include <QFile>
 
 NBaseQREncodeWidget::NBaseQREncodeWidget(QWidget *parent) : QWidget(parent)
 {
@@ -199,7 +200,7 @@ void NBaseQREncodeWidget::paintEvent(QPaintEvent *e)
         double wrap_x = (rect.width () - icon_width) / 2.0;
         double wrap_y = (rect.width () - icon_height) / 2.0;
         QRectF wrap(wrap_x - 5, wrap_y - 5, icon_width + 10, icon_height + 10);
-        painter.drawRoundRect(wrap, 50, 50);
+        painter.drawRoundedRect(wrap, 50, 50);
         if(qrLogo.isEmpty() || qrLogo == "daodaoliang.github.io"){
             painter.save();
             QPen pen;

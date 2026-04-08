@@ -9,6 +9,8 @@
 #include <QDebug>
 #include <QEventLoop>
 #include <QTimer>
+#include <cstdlib>
+#include <ctime>
 
 /**
  * @brief The NBaseCaptcha_p class 验证码操作类
@@ -200,8 +202,11 @@ QString NBaseCaptcha_p::generateLetter(quint16 paramCount)
 
 qint16 NBaseCaptcha_p::generateRandom(qint16 paramLow, qint16 paramHigh)
 {
-    QTime time = QTime::currentTime();
-    qsrand((uint)time.msec());
+    static bool initialized = false;
+    if (!initialized) {
+        srand((unsigned int)time(nullptr));
+        initialized = true;
+    }
     sleepNow(2);
     if (paramLow > 0){
         return paramLow + rand() % (paramHigh - paramLow);
@@ -277,6 +282,6 @@ QColor NBaseCaptcha_p::generateRandomBgColor()
 void NBaseCaptcha_p::sleepNow(quint32 paramMilsecond)
 {
     QEventLoop eventloop;
-    QTimer::singleShot(paramMilsecond, &eventloop, SLOT(quit()));
+    QTimer::singleShot(paramMilsecond, &eventloop, &QEventLoop::quit);
     eventloop.exec();
 }

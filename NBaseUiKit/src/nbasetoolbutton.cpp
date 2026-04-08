@@ -15,8 +15,8 @@ NBaseToolButton::NBaseToolButton(QWidget *parent) : QWidget(parent)
     closeButton->setToolTip(tr("关闭"));
     minButton->setStyleSheet("background-color:transparent;");
     closeButton->setStyleSheet("background-color:transparent;");
-    connect(minButton,SIGNAL(clicked(bool)),this,SLOT(showMinimized()));
-    connect(closeButton,SIGNAL(clicked(bool)),this,SLOT(deleteLater()));
+    connect(minButton,&QToolButton::clicked,this,&NBaseToolButton::showMinimized);
+    connect(closeButton,&QToolButton::clicked,this,&NBaseToolButton::deleteLater);
     setHideToolButton();
 }
 

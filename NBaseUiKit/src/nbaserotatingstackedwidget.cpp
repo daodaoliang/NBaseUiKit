@@ -57,8 +57,8 @@ void NBaseRotatingStackedWidget::rotate(int index)
     animnow->setEasingCurve(QEasingCurve::Linear);
     animnow->setStartValue(0);
     animnow->setEndValue(180);
-    connect(animnow,SIGNAL(valueChanged(QVariant)),this,SLOT(valChanged(QVariant)));
-    connect(animnow,SIGNAL(finished()),this,SLOT(animDone()));
+    connect(animnow,&QPropertyAnimation::valueChanged,this,&NBaseRotatingStackedWidget::valChanged);
+    connect(animnow,&QPropertyAnimation::finished,this,&NBaseRotatingStackedWidget::animDone);
     currentWidget()->hide();
     isAnimating = true;
     animnow->start();

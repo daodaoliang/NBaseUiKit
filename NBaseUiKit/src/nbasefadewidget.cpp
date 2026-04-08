@@ -9,9 +9,9 @@ NBaseFadeWidget::NBaseFadeWidget(NBaseMoveableWidget *parent) : NBaseMoveableWid
 void NBaseFadeWidget::beginFadeShow(quint32 param_seconds)
 {
     show_animation_->setDuration(param_seconds * 1000);
-    show_animation_->setStartValue(0);
+    show_animation_->setStartValue(0.0);
     show();
-    show_animation_->setEndValue(1);
+    show_animation_->setEndValue(1.0);
     show_animation_->start();
 }
 

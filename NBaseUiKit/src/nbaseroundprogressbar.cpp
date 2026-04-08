@@ -1,4 +1,5 @@
 #include "nbaseroundprogressbar.h"
+#include <QPainterPath>
 
 NBaseRoundProgressBar::NBaseRoundProgressBar(QWidget *parent)
     : QWidget(parent),
@@ -99,7 +100,7 @@ void NBaseRoundProgressBar::setFormat(const QString &format)
 
 void NBaseRoundProgressBar::resetFormat()
 {
-    m_format = QString::null;
+    m_format = QString();
     valueFormatChanged();
 }
 
@@ -209,13 +210,13 @@ void NBaseRoundProgressBar::paintEvent(QPaintEvent *event)
     // finally draw the bar
     p.end();
     QPainter painter(this);
-    painter.fillRect(baseRect, palette().background());
+    painter.fillRect(baseRect, palette().window());
     painter.drawImage(0,0, buffer);
 }
 
 void NBaseRoundProgressBar::drawBackground(QPainter &p, const QRectF &baseRect)
 {
-    p.fillRect(baseRect, palette().background());
+    p.fillRect(baseRect, palette().window());
 }
 
 void NBaseRoundProgressBar::drawBase(QPainter &p, const QRectF &baseRect)

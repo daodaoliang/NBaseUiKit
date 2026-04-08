@@ -58,7 +58,7 @@ void NBaseWaitDialog::closeEvent(QCloseEvent *event)
 void NBaseWaitDialog::paintEvent(QPaintEvent *event)
 {
     QStyleOption opt;
-    opt.init(this);
+    opt.initFrom(this);
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
     NBaseShadowWidget::paintEvent(event);
@@ -107,7 +107,7 @@ void NBaseWaitDialog::setBoxStyle()
                                   "border-color:rgb(41,146,204);"
                                   "color:white;");
     innerCancleBtn->setGeometry(this->x() + this->width()/2 - 50, this->y() + this->height() - 50, 100, 30);
-    connect(innerCancleBtn, SIGNAL(clicked(bool)), this, SLOT(closeWaitDialog()));
+    connect(innerCancleBtn, &QPushButton::clicked, this, &NBaseWaitDialog::closeWaitDialog);
 
     // 增加辅助控件(中间面板)
     QWidget *innerCenter = new QWidget(this);

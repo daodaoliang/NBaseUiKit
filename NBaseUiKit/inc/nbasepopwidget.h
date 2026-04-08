@@ -10,7 +10,7 @@
 
 #include <QObject>
 #include <QWidget>
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QPropertyAnimation>
 #include <QPoint>
 #include <QTimer>
@@ -74,14 +74,14 @@ private slots:
      * @brief animationValueChanged 属性值发生改变时的槽函数
      * @param param_value
      */
-    void animationValueChanged(QVariant param_value);
+    void animationValueChanged(const QVariant &param_value);
 
 private:
 
     /**
      * @brief desktop 窗体桌面信息
      */
-    QDesktopWidget desktop;
+    QScreen *desktop;
 
 
     /**

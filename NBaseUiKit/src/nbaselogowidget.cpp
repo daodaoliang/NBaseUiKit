@@ -10,7 +10,7 @@ NBaseLogoWidget::NBaseLogoWidget(QWidget *parent) : QLabel(parent)
     imageCrop = new NBaseImageCropper(nullptr, true, true);
     imageCrop->setSize(400,400);
     setFixedSize(100,100);
-    connect(imageCrop,SIGNAL(singalCropImage(QPixmap)),this,SLOT(cropImage(QPixmap)));
+    connect(imageCrop, &NBaseImageCropper::singalCropImage, this, &NBaseLogoWidget::cropImage);
     setLogoPath(QCoreApplication::applicationDirPath() + "/default.jpg");
 }
 

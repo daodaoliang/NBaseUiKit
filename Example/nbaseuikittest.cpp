@@ -54,7 +54,7 @@ void NBaseUiKitTest::on_pushButton_clicked()
     test_case_001->show();
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_001, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_001, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("可以移动窗体的测试用例,执行成功,五秒后将会关闭……\r\n");
@@ -71,7 +71,7 @@ void NBaseUiKitTest::on_pushButton_2_clicked()
     test_case_002->beginFadeShow(5);
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_002, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_002, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("渐入渐出窗体测试用例,执行成功,五秒后将会关闭……\r\n");
@@ -85,7 +85,7 @@ void NBaseUiKitTest::on_pushButton_3_clicked()
     test_case_003->show();
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_003, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_003, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("迷你窗体测试用例,执行成功,五秒后将会关闭……\r\n");
@@ -99,7 +99,7 @@ void NBaseUiKitTest::on_pushButton_4_clicked()
     test_case_004->show();
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_004, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_004, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("阴影窗体测试用例,执行成功,五秒后将会关闭……\r\n");
@@ -115,7 +115,7 @@ void NBaseUiKitTest::on_pushButton_5_clicked()
     test_case_005->showPopDialog();
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_005, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_005, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("弹出窗体测试用例,执行成功,五秒后将会关闭……\r\n");
@@ -132,7 +132,7 @@ void NBaseUiKitTest::on_pushButton_6_clicked()
     test_case_006->show();
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_006, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_006, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("snowLabel测试用例,执行成功,五秒后将会关闭……\r\n");
@@ -148,7 +148,7 @@ void NBaseUiKitTest::on_pushButton_8_clicked()
     test_case_007->startAnimation();
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_007, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_007, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("圆周运动窗体测试用例,执行成功,五秒后将会关闭……\r\n");
@@ -165,7 +165,7 @@ void NBaseUiKitTest::on_pushButton_7_clicked()
     test_case_008->show();
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_008, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_008, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("LED窗体测试用例,执行成功,五秒后将会关闭……\r\n");
@@ -183,7 +183,7 @@ void NBaseUiKitTest::on_pushButton_9_clicked()
     test_case_009->show();
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_009, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_009, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("LED窗体测试用例(闪光灯效果),执行成功,五秒后将会关闭……\r\n");
@@ -201,7 +201,7 @@ void NBaseUiKitTest::on_pushButton_10_clicked()
     test_case_010->show();
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_010, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_010, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("跑马灯label测试用例,执行成功,五秒后将会关闭……\r\n");
@@ -217,7 +217,7 @@ void NBaseUiKitTest::on_pushButton_11_clicked()
     test_case_011->show();
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_011, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_011, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("QR测试用例,执行成功,五秒后将会关闭……\r\n");
@@ -241,7 +241,7 @@ void NBaseUiKitTest::on_pushButton_12_clicked()
     test_case_012->setValue(30);
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_012, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_012, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("圆形进度条测试用例(甜甜圈样式),执行成功,五秒后将会关闭……\r\n");
@@ -262,7 +262,7 @@ void NBaseUiKitTest::on_pushButton_13_clicked()
     test_case_013->setValue(30);
 
     // 5秒后关闭
-    QTimer::singleShot(5000, test_case_013, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_013, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("圆形进度条测试用例(线性样式),执行成功,五秒后将会关闭……\r\n");
@@ -287,7 +287,7 @@ void NBaseUiKitTest::on_pushButton_15_clicked()
     test_case_015->show();
 
     // 5 秒后关闭
-    QTimer::singleShot(5000, test_case_015, SLOT(deleteLater()));
+    QTimer::singleShot(5000, test_case_015, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("阴影label 测试用例,执行成功,五秒后将会关闭……\r\n");
@@ -300,7 +300,7 @@ void NBaseUiKitTest::on_pushButton_16_clicked()
     test_case_016->showWaitDialog();
 
     // 十秒后关闭
-    QTimer::singleShot(15000, test_case_016, SLOT(deleteLater()));
+    QTimer::singleShot(15000, test_case_016, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("等待框(box风格) 测试用例,执行成功,十五秒后将会关闭……\r\n");
@@ -313,7 +313,7 @@ void NBaseUiKitTest::on_pushButton_17_clicked()
     test_case_017->showWaitDialog();
 
     // 十秒后关闭
-    QTimer::singleShot(15000, test_case_017, SLOT(deleteLater()));
+    QTimer::singleShot(15000, test_case_017, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("等待框(android) 测试用例,执行成功,十五秒后将会关闭……\r\n");
@@ -330,7 +330,7 @@ void NBaseUiKitTest::on_pushButton_18_clicked()
     for(int index = 0;index != 200;index++) test_case_18->addItem(QString("测试项目:%1").arg(index));
 
     // 十秒后关闭
-    QTimer::singleShot(30000, test_case_18, SLOT(deleteLater()));
+    QTimer::singleShot(30000, test_case_18, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("触屏列表 测试用例,执行成功,三十秒后将会关闭……\r\n");
@@ -369,7 +369,7 @@ void NBaseUiKitTest::on_pushButton_19_clicked()
         btn->setFont(QFont("微软雅黑", 12, QFont::Bold));
         btn->setFixedWidth(80);
         btn->setStyleSheet("background-color:rgb(41,176,204);color:white;border:none;border-radius:1px;");
-        connect(btn,SIGNAL(clicked(bool)),test_case_19,SLOT(nextPage()));
+        connect(btn, &QPushButton::clicked, test_case_19, &NBaseRotatingStackedWidget::nextPage);
         test_case_19->addWidget(page);
     }
 
@@ -389,7 +389,7 @@ void NBaseUiKitTest::on_pushButton_20_clicked()
     for(int index = 0;index != 200;index++) test_case_20->addItem(QString("测试项目:%1").arg(index));
 
     // 十秒后关闭
-    QTimer::singleShot(30000, test_case_20, SLOT(deleteLater()));
+    QTimer::singleShot(30000, test_case_20, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText("触屏列表 测试用例,执行成功,三十秒后将会关闭……\r\n");
@@ -405,7 +405,7 @@ void NBaseUiKitTest::on_pushButton_21_clicked()
     test_case_21_w->show();
 
     // 十秒后关闭
-    QTimer::singleShot(10000, test_case_21_w, SLOT(deleteLater()));
+    QTimer::singleShot(10000, test_case_21_w, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText(tr("验证码 测试用例,执行成功,当前验证码为:(%1)十秒后将会关闭……\r\n").arg(test_case_21.getCurrentCaptcha()));
@@ -420,7 +420,7 @@ void NBaseUiKitTest::on_pushButton_22_clicked()
     test_case_22->show();
 
     // 十秒后关闭
-    QTimer::singleShot(30000, test_case_22, SLOT(deleteLater()));
+    QTimer::singleShot(30000, test_case_22, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText(tr("图片截取 测试用例,执行成功,三十秒后将会关闭……\r\n"));
@@ -433,7 +433,7 @@ void NBaseUiKitTest::on_pushButton_23_clicked()
     test_case_23->show();
 
     // 十秒后关闭
-    QTimer::singleShot(10000, test_case_23, SLOT(deleteLater()));
+    QTimer::singleShot(10000, test_case_23, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText(tr("switch按钮 测试用例,执行成功,十秒后将会关闭……\r\n"));
@@ -449,7 +449,7 @@ void NBaseUiKitTest::on_pushButton_24_clicked()
     test_case_24->showExpan();
 
     // 十秒后关闭
-    QTimer::singleShot(10000, test_case_24, SLOT(deleteLater()));
+    QTimer::singleShot(10000, test_case_24, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText(tr("卷轴widget 测试用例,执行成功,十秒后将会关闭……\r\n"));
@@ -474,7 +474,7 @@ void NBaseUiKitTest::on_pushButton_26_clicked()
     test_case_26->show();
 
     // 十秒后关闭
-    QTimer::singleShot(10000, test_case_26, SLOT(deleteLater()));
+    QTimer::singleShot(10000, test_case_26, &QObject::deleteLater);
 
     // 日志
     ui->textBrowser->insertPlainText(tr("点击波按钮 测试用例,执行成功,十秒后将会关闭……\r\n"));

@@ -27,7 +27,7 @@ include($$PWD/3rdparty/3rdparty.pri)
 INCLUDEPATH += $$PWD/3rdparty/qrencode/qrencode \
 
 # 引入版本信息
-RC_FILE += ./NBaseUiKit_resource.rc
+win32: RC_FILE += ./NBaseUiKit_resource.rc
 
 # 引入图片资源
 RESOURCES += \

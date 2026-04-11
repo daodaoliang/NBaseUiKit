@@ -19,6 +19,12 @@ QMAKE_CXXFLAGS_DEBUG += -std=c++17
 QMAKE_CXXFLAGS_RELEASE -= -std=gnu++1z
 QMAKE_CXXFLAGS_RELEASE += -std=c++17
 
+# 配置编译中间件输出目录，避免污染源码
+MOC_DIR = build_/moc
+UI_DIR = build_/ui
+RCC_DIR = build_/rcc
+OBJECTS_DIR = build_/obj
+
 # 引入源码
 include($$PWD/NBaseUiKit_src.pri)
 

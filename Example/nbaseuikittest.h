@@ -151,6 +151,11 @@ private slots:
      */
     void on_pushButton_27_clicked();
 
+    /**
+     * @brief on_pushButton_28_clicked QtAwesome 图标测试用例
+     */
+    void on_pushButton_28_clicked();
+
 private:
     Ui::NBaseUiKitTest *ui;
 };

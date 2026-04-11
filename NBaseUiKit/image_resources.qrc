@@ -26,5 +26,8 @@
         <file alias="bright">img/brightness.png</file>
         <file alias="image_bg">img/image.png</file>
         <file alias="lock_t">img/locked_2.png</file>
+        <file>img/fonts/Font Awesome 7 Brands-Regular-400.otf</file>
+        <file>img/fonts/Font Awesome 7 Free-Regular-400.otf</file>
+        <file>img/fonts/Font Awesome 7 Free-Solid-900.otf</file>
     </qresource>
 </RCC>

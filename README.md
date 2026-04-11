@@ -2,8 +2,8 @@
 
 ```
     作者: daodaoliang@yeah.net
-    版本: V1.0.18.0
-    修改时间: 2026年4月9日
+    版本: V1.1.0.0
+    修改时间: 2026年4月12日
     联系QQ: 88341189
 ```
 
@@ -333,6 +333,20 @@ include($$PWD/../NBaseUiKit/NBaseUiKit_inc.pri)
     test_case_26->show();
 ```
 
+* QtAwesome 图标库 测试用例
+
+```
+    // QtAwesome 图标测试用例
+    fa::NFontAwesome *awesome = fa::NFontAwesome::instance();
+    awesome->initFontAwesome();
+    
+    // 通过名称获取图标
+    QIcon icon = awesome->icon("home");
+    
+    // 通过编码获取图标
+    QIcon icon2 = awesome->icon(0xf015);
+```
+
 ## 3. 组件路线图
 
 * ~~可移动widget;~~
@@ -357,6 +371,7 @@ include($$PWD/../NBaseUiKit/NBaseUiKit_inc.pri)
 * ~~双态按钮;~~
 * ~~头像生成按钮;~~
 * ~~点击波按钮~~
+* ~~QtAwesome 图标库（2000+ 图标）~~
 * material风格 checkbox
 * material风格 dialog
 * material风格 progress
@@ -366,6 +381,7 @@ include($$PWD/../NBaseUiKit/NBaseUiKit_inc.pri)
 
 ## 4. changelog
 
+* V 1.1.0.0 集成 QtAwesome 图标库，提供 2000+ 精美图标；修复编译警告；移除 foreach 宏，使用 C++11 范围 for 循环；
 * V 1.0.18.0 适配到 Qt6.11.0，支持 Windows 和 Linux 跨平台编译;
 * V 1.0.17.1 适配了一下linux下面的编译问题;
 * V 1.0.17.0 增加了倒计时波widget;

@@ -4,6 +4,14 @@
 #include <QDebug>
 #include <QTimer>
 #include <QVBoxLayout>
+#include <QMainWindow>
+#include <QComboBox>
+#include <QScrollArea>
+#include <QTableWidget>
+#include <QHeaderView>
+#include <QAbstractItemView>
+#include <QStatusBar>
+#include <QPair>
 #include "QMap"
 #include "nbasemoveablewidget.h"
 #include "nbasefadewidget.h"
@@ -28,6 +36,12 @@
 #include "nbaselogowidget.h"
 #include "nbaseclickwave.h"
 #include "nbasecountdown.h"
+#include "nfontawesome.h"
+#include <QTabWidget>
+#include <QMainWindow>
+#include <QListView>
+#include <QStandardItemModel>
+#include <QStandardItem>
 
 
 NBaseUiKitTest::NBaseUiKitTest(QWidget *parent) :
@@ -359,7 +373,7 @@ void NBaseUiKitTest::on_pushButton_19_clicked()
     colorMap.insert("油烟墨","background-color:rgb(63,63,60);color:white;");
     colorMap.insert("米红","background-color:rgb(225,189,162);color:white;");
     colorMap.insert("十样锦","background-color:rgb(252,177,170);color:white;");
-    foreach (QString item, colorMap.keys()) {
+    for (const QString &item : colorMap.keys()) {
         QLabel *page = new QLabel(test_case_19);
         page->setStyleSheet(colorMap[item]);
         page->setText(item);
@@ -488,4 +502,187 @@ void NBaseUiKitTest::on_pushButton_27_clicked()
     test_case_27->startCountDown();
     // 日志
     ui->textBrowser->insertPlainText(tr("倒计数窗体 测试用例,执行成功,十秒后将会关闭……\r\n"));
+}
+
+void NBaseUiKitTest::on_pushButton_28_clicked()
+{
+    // QtAwesome 图标测试用例
+    QMainWindow *test_case_28 = new QMainWindow();
+    test_case_28->setMinimumSize(1200, 800);
+    test_case_28->setWindowTitle("图标测试");
+    
+    QWidget *centralWidget = new QWidget(test_case_28);
+    test_case_28->setCentralWidget(centralWidget);
+    
+    QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
+    
+    // 初始化 QtAwesome
+    fa::NFontAwesome *awesome = fa::NFontAwesome::instance();
+    awesome->initFontAwesome();
+    
+    // 创建状态栏
+    QStatusBar *statusBar = new QStatusBar(test_case_28);
+    test_case_28->setStatusBar(statusBar);
+    statusBar->showMessage("点击图标查看名称");
+    
+    // 创建标签页
+    QTabWidget *tabWidget = new QTabWidget(centralWidget);
+    mainLayout->addWidget(tabWidget);
+    
+    // 定义一些 Regular 风格的图标
+    static const QList<int> regularIconCodes = {
+        0xf111, 0xf004, 0xf005, 0xf1c9, 0xf249,
+        0xf058, 0xf057, 0xf059, 0xf05a, 0xf06a,
+        0xf06e, 0xf070, 0xf06e, 0xf075, 0xf02d,
+        0xf02e, 0xf118, 0xf119, 0xf07b, 0xf07c
+    };
+    
+    // 定义一些 Brands 风格的图标
+    static const QList<int> brandsIconCodes = {
+        0xf426, 0xf081, 0xf082, 0xf083, 0xf179,
+        0xf379, 0xf427, 0xf428, 0xf429, 0xf42a,
+        0xf099, 0xf09a, 0xf2ab, 0xf0ac, 0xf0ad
+    };
+    
+    // 创建单元格点击处理函数
+    auto onCellClicked = [=](int row, int column) {
+        QTableWidget *table = qobject_cast<QTableWidget*>(sender());
+        if (table) {
+            QTableWidgetItem *item = table->item(row, column);
+            if (item) {
+                QString iconName = item->data(Qt::UserRole).toString();
+                statusBar->showMessage(QString("图标名称: %1").arg(iconName));
+            }
+        }
+    };
+    
+    // 创建填充表格的辅助函数
+    auto populateTable = [=](QTableWidget *table, int style) {
+        table->clearContents();
+        table->setRowCount(0);
+        
+        QList<QPair<QString, int>> iconList;
+        
+        if (style == fa::fa_regular) {
+            for (int code : regularIconCodes) {
+                iconList.append(qMakePair(QString("0x%1").arg(code, 0, 16), code));
+            }
+        }
+        else if (style == fa::fa_brands) {
+            for (int code : brandsIconCodes) {
+                iconList.append(qMakePair(QString("0x%1").arg(code, 0, 16), code));
+            }
+        }
+        else {
+            for (const QString &name : awesome->iconNames()) {
+                iconList.append(qMakePair(name, 0));
+            }
+        }
+        
+        int row = 0;
+        int col = 0;
+        for (const auto &iconInfo : iconList) {
+            QString name = iconInfo.first;
+            int code = iconInfo.second;
+            
+            QVariantMap options;
+            options.insert("style", style);
+            
+            QIcon icon;
+            if (code == 0) {
+                icon = awesome->icon(name, options);
+            } else {
+                icon = awesome->icon(code, options);
+            }
+            
+            QLabel *label = new QLabel();
+            label->setAlignment(Qt::AlignCenter);
+            label->setPixmap(icon.pixmap(48, 48));
+            label->setToolTip(name);
+            
+            if (row >= table->rowCount()) {
+                table->insertRow(row);
+            }
+            
+            table->setCellWidget(row, col, label);
+            
+            // 创建并设置item来存储图标名称
+            QTableWidgetItem *item = new QTableWidgetItem();
+            item->setData(Qt::UserRole, name);
+            table->setItem(row, col, item);
+            
+            col++;
+            if (col >= 6) {
+                col = 0;
+                row++;
+            }
+        }
+    };
+    
+    // 创建 Solid 标签页
+    QWidget *solidTab = new QWidget();
+    QVBoxLayout *solidLayout = new QVBoxLayout(solidTab);
+    QScrollArea *solidScroll = new QScrollArea();
+    solidScroll->setWidgetResizable(true);
+    QTableWidget *solidTable = new QTableWidget();
+    solidTable->setColumnCount(6);
+    solidTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    solidTable->verticalHeader()->setDefaultSectionSize(80);
+    solidTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    solidTable->setSelectionMode(QAbstractItemView::SingleSelection);
+    solidTable->setSelectionBehavior(QAbstractItemView::SelectItems);
+    solidTable->setFocusPolicy(Qt::NoFocus);
+    solidTable->setStyleSheet("QTableWidget::item:focus { outline: none; }");
+    QObject::connect(solidTable, &QTableWidget::cellClicked, onCellClicked);
+    solidScroll->setWidget(solidTable);
+    solidLayout->addWidget(solidScroll);
+    tabWidget->addTab(solidTab, QString("Solid (%1 图标)").arg(awesome->iconNames().size()));
+    
+    // 创建 Regular 标签页
+    QWidget *regularTab = new QWidget();
+    QVBoxLayout *regularLayout = new QVBoxLayout(regularTab);
+    QScrollArea *regularScroll = new QScrollArea();
+    regularScroll->setWidgetResizable(true);
+    QTableWidget *regularTable = new QTableWidget();
+    regularTable->setColumnCount(6);
+    regularTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    regularTable->verticalHeader()->setDefaultSectionSize(80);
+    regularTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    regularTable->setSelectionMode(QAbstractItemView::SingleSelection);
+    regularTable->setSelectionBehavior(QAbstractItemView::SelectItems);
+    regularTable->setFocusPolicy(Qt::NoFocus);
+    regularTable->setStyleSheet("QTableWidget::item:focus { outline: none; }");
+    QObject::connect(regularTable, &QTableWidget::cellClicked, onCellClicked);
+    regularScroll->setWidget(regularTable);
+    regularLayout->addWidget(regularScroll);
+    tabWidget->addTab(regularTab, QString("Regular (%1 图标)").arg(regularIconCodes.size()));
+    
+    // 创建 Brands 标签页
+    QWidget *brandsTab = new QWidget();
+    QVBoxLayout *brandsLayout = new QVBoxLayout(brandsTab);
+    QScrollArea *brandsScroll = new QScrollArea();
+    brandsScroll->setWidgetResizable(true);
+    QTableWidget *brandsTable = new QTableWidget();
+    brandsTable->setColumnCount(6);
+    brandsTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    brandsTable->verticalHeader()->setDefaultSectionSize(80);
+    brandsTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    brandsTable->setSelectionMode(QAbstractItemView::SingleSelection);
+    brandsTable->setSelectionBehavior(QAbstractItemView::SelectItems);
+    brandsTable->setFocusPolicy(Qt::NoFocus);
+    brandsTable->setStyleSheet("QTableWidget::item:focus { outline: none; }");
+    QObject::connect(brandsTable, &QTableWidget::cellClicked, onCellClicked);
+    brandsScroll->setWidget(brandsTable);
+    brandsLayout->addWidget(brandsScroll);
+    tabWidget->addTab(brandsTab, QString("Brands (%1 图标)").arg(brandsIconCodes.size()));
+    
+    // 填充所有表格
+    populateTable(solidTable, fa::fa_solid);
+    populateTable(regularTable, fa::fa_regular);
+    populateTable(brandsTable, fa::fa_brands);
+    
+    test_case_28->show();
+    
+    // 日志
+    ui->textBrowser->insertPlainText("图标测试用例,执行成功……\r\n");
 }

@@ -4,3 +4,4 @@
 /NBaseUiKit/*.Release
 /NBaseUiKit/*.Debug
 /NBaseUiKit/NBaseUiKit.pro.user
+/.qtc_clangd

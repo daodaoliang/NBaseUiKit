@@ -4,15 +4,20 @@
 #include <QDebug>
 #include <QTimer>
 #include <QVBoxLayout>
-#include <QMainWindow>
-#include <QComboBox>
 #include <QScrollArea>
+#include <QGroupBox>
+#include <QPushButton>
+#include <QTextEdit>
+#include <QHBoxLayout>
+#include <QStatusBar>
+#include <QTabWidget>
 #include <QTableWidget>
+#include <QTableWidgetItem>
 #include <QHeaderView>
 #include <QAbstractItemView>
-#include <QStatusBar>
+#include <QMap>
 #include <QPair>
-#include "QMap"
+#include <QMessageBox>
 #include "nbasemoveablewidget.h"
 #include "nbasefadewidget.h"
 #include "nbaseminiappwidget.h"
@@ -37,18 +42,24 @@
 #include "nbaseclickwave.h"
 #include "nbasecountdown.h"
 #include "nfontawesome.h"
-#include <QTabWidget>
-#include <QMainWindow>
-#include <QListView>
-#include <QStandardItemModel>
-#include <QStandardItem>
-
 
 NBaseUiKitTest::NBaseUiKitTest(QWidget *parent) :
-    QWidget(parent),
+    QMainWindow(parent),
     ui(new Ui::NBaseUiKitTest)
 {
     ui->setupUi(this);
+    
+    // 连接分类按钮信号
+    connect(ui->btnLayout, &QPushButton::clicked, this, &NBaseUiKitTest::onCategoryClicked);
+    connect(ui->btnAnimation, &QPushButton::clicked, this, &NBaseUiKitTest::onCategoryClicked);
+    connect(ui->btnInput, &QPushButton::clicked, this, &NBaseUiKitTest::onCategoryClicked);
+    connect(ui->btnDisplay, &QPushButton::clicked, this, &NBaseUiKitTest::onCategoryClicked);
+    connect(ui->btnDialog, &QPushButton::clicked, this, &NBaseUiKitTest::onCategoryClicked);
+    connect(ui->btnIcon, &QPushButton::clicked, this, &NBaseUiKitTest::onCategoryClicked);
+    connect(ui->btnOther, &QPushButton::clicked, this, &NBaseUiKitTest::onCategoryClicked);
+    
+    // 初始化状态栏
+    ui->statusBar->showMessage("欢迎使用 NBaseUiKit 组件库");
 }
 
 NBaseUiKitTest::~NBaseUiKitTest()
@@ -56,633 +67,613 @@ NBaseUiKitTest::~NBaseUiKitTest()
     delete ui;
 }
 
-void NBaseUiKitTest::on_pushButton_clicked()
+void NBaseUiKitTest::onCategoryClicked()
 {
-    // 可以移动窗体的测试用例
-    NBaseMoveableWidget *test_case_001 = new NBaseMoveableWidget();
-    QLabel test_case_001_label(test_case_001);
-    test_case_001_label.setText("可以移动窗体的测试用例");
-    test_case_001->setStyleSheet("background-color: rgba(0, 255, 0, 120);");
-    test_case_001->setFixedSize(400,400);
-    test_case_001->setShowToolButton();
-    test_case_001->show();
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_001, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("可以移动窗体的测试用例,执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_2_clicked()
-{
-    // 渐入渐出窗体测试用例
-    NBaseFadeWidget *test_case_002 = new NBaseFadeWidget();
-    QLabel test_case_002_label(test_case_002);
-    test_case_002_label.setText("渐入渐出窗体测试用例");
-    test_case_002->setFixedSize(400, 400);
-    test_case_002->setStyleSheet("background-color: rgba(255, 0, 0, 120);");
-    test_case_002->beginFadeShow(5);
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_002, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("渐入渐出窗体测试用例,执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_3_clicked()
-{
-    // 迷你窗体测试用例
-    NBaseMiniAppWidget *test_case_003 = new NBaseMiniAppWidget();
-    test_case_003->setPixmap(QPixmap(":miniImage"));
-    test_case_003->show();
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_003, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("迷你窗体测试用例,执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_4_clicked()
-{
-    // 阴影窗体测试用例
-    NBaseShadowWidget *test_case_004 = new NBaseShadowWidget();
-    test_case_004->setFixedSize(400,400);
-    test_case_004->show();
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_004, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("阴影窗体测试用例,执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_5_clicked()
-{
-    // 弹出窗体测试用例
-    NBasePopWidget *test_case_005 = new NBasePopWidget();
-    test_case_005->setFixedHeight(400);
-    test_case_005->setFixedWidth(400);
-    test_case_005->setStyleSheet("background-color: rgb(170, 255, 255);");
-    test_case_005->showPopDialog();
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_005, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("弹出窗体测试用例,执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_6_clicked()
-{
-    // snowLabel测试用例
-    NBaseSnowLabel *test_case_006 = new NBaseSnowLabel();
-    test_case_006->setText("我是测试数据");
-    test_case_006->setFont(QFont("微软雅黑", 12, QFont::Bold));
-    test_case_006->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
-    test_case_006->setFixedSize(200,50);
-    test_case_006->show();
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_006, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("snowLabel测试用例,执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_8_clicked()
-{
-    // 圆周运动窗体测试用例
-    NBaseCircleAnimationWidget *test_case_007 = new NBaseCircleAnimationWidget();
-    test_case_007->setCircleInfo(":miniImage",10);
-    test_case_007->move(750,200);
-    test_case_007->show();
-    test_case_007->startAnimation();
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_007, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("圆周运动窗体测试用例,执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_7_clicked()
-{
-    // LED窗体测试用例(跑马灯效果)
-    NBaseLEDWidget *test_case_008 = new NBaseLEDWidget();
-    test_case_008->setFixedSize(300,40);
-    test_case_008->setText("我是跑马灯LED效果。");
-    test_case_008->setTimer(500);
-    test_case_008->startEffect(true);
-    test_case_008->show();
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_008, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("LED窗体测试用例,执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_9_clicked()
-{
-    // LED窗体测试用例(闪光灯效果)
-    NBaseLEDWidget *test_case_009 = new NBaseLEDWidget();
-    test_case_009->setFixedSize(300,40);
-    test_case_009->setText("我是闪光灯LED效果。");
-    test_case_009->setTimer(500);
-    test_case_009->setEffect(NBaseLEDWidget::intermittent);
-    test_case_009->startEffect(true);
-    test_case_009->show();
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_009, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("LED窗体测试用例(闪光灯效果),执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_10_clicked()
-{
-    // 跑马灯label测试用例
-    NBaseMarqueeLabel *test_case_010 = new NBaseMarqueeLabel();
-    test_case_010->setText("我是跑马灯测试数据");
-    test_case_010->setFont(QFont("Fixed", 20, QFont::Bold));
-    test_case_010->setDirection(NBaseMarqueeLabel::RightToLeft);
-    test_case_010->setInterval(50);
-    test_case_010->start();
-    test_case_010->show();
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_010, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("跑马灯label测试用例,执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_11_clicked()
-{
-    // QR测试用例
-    NBaseQREncodeWidget *test_case_011 = new NBaseQREncodeWidget();
-    test_case_011->resize(300,300);
-    test_case_011->setQrData("别扫了，没啥东西");
-    test_case_011->setQrLogo(":miniImage");
-    test_case_011->show();
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_011, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("QR测试用例,执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_12_clicked()
-{
-    // 圆形进度条测试用例(甜甜圈样式)
-    QPalette p1;
-    p1.setBrush(QPalette::AlternateBase, Qt::darkCyan);
-    p1.setColor(QPalette::Text, Qt::yellow);
-    NBaseRoundProgressBar *test_case_012 = new NBaseRoundProgressBar();
-    test_case_012->setOutlinePenWidth(2);
-    test_case_012->setPalette(p1);
-    test_case_012->setNullPosition(NBaseRoundProgressBar::PositionLeft);
-    test_case_012->setDecimals(0);
-    test_case_012->setFixedSize(200,200);
-    test_case_012->show();
-
-    // 设置进度
-    test_case_012->setValue(30);
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_012, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("圆形进度条测试用例(甜甜圈样式),执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_13_clicked()
-{
-    // 圆形进度条测试用例(线性样式)
-    NBaseRoundProgressBar *test_case_013 = new NBaseRoundProgressBar();
-    test_case_013->setOutlinePenWidth(8);
-    test_case_013->setDataPenWidth(10);
-    test_case_013->setBarStyle(NBaseRoundProgressBar::StyleLine);
-    test_case_013->setDecimals(0);
-    test_case_013->setFixedSize(200,200);
-    test_case_013->show();
-
-    // 设置进度
-    test_case_013->setValue(30);
-
-    // 5秒后关闭
-    QTimer::singleShot(5000, test_case_013, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("圆形进度条测试用例(线性样式),执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_14_clicked()
-{
-    // toastr 测试用例
-    NBaseToastr * test_case_014 = new NBaseToastr(this, "我是刀刀亮测试数据");
-    test_case_014->toastr();
-
-    // 日志
-    ui->textBrowser->insertPlainText("toastr, 执行成功,三秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_15_clicked()
-{
-    // 阴影label 测试用例
-    NBaseShadowLabel * test_case_015 = new NBaseShadowLabel(" 我是刀刀亮测试数据 ");
-    test_case_015->setFont(QFont("Fixed", 25, QFont::Bold));
-    test_case_015->setFixedSize(400, 50);
-    test_case_015->show();
-
-    // 5 秒后关闭
-    QTimer::singleShot(5000, test_case_015, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("阴影label 测试用例,执行成功,五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_16_clicked()
-{
-    // 等待框(box) 测试用例
-    NBaseWaitDialog * test_case_016 = new NBaseWaitDialog(this);
-    test_case_016->showWaitDialog();
-
-    // 十秒后关闭
-    QTimer::singleShot(15000, test_case_016, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("等待框(box风格) 测试用例,执行成功,十五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_17_clicked()
-{
-    // 等待框(android) 测试用例
-    NBaseWaitDialog * test_case_017 = new NBaseWaitDialog(this, NBaseWaitDialog::ANDROIDSTYLE);
-    test_case_017->showWaitDialog();
-
-    // 十秒后关闭
-    QTimer::singleShot(15000, test_case_017, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("等待框(android) 测试用例,执行成功,十五秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_18_clicked()
-{
-    // 触屏列表 测试用例
-    NTouchListWidget *test_case_18 = new NTouchListWidget();
-    test_case_18->setFixedSize(200,500);
-    test_case_18->show();
-
-    // 插入测试数据
-    for(int index = 0;index != 200;index++) test_case_18->addItem(QString("测试项目:%1").arg(index));
-
-    // 十秒后关闭
-    QTimer::singleShot(30000, test_case_18, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("触屏列表 测试用例,执行成功,三十秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_19_clicked()
-{
-    // 翻转页面 测试用例
-    NBaseRotatingStackedWidget *test_case_19 = new NBaseRotatingStackedWidget();
-    test_case_19->setFixedSize(400,500);
-    test_case_19->show();
-
-    // 插入测试数据
-    QMap<QString, QString> colorMap;
-    colorMap.insert("相思灰","background-color:rgb(98,92,82);color:white;");
-    colorMap.insert("卡其黄","background-color:rgb(213,184,132);color:white;");
-    colorMap.insert("番茄红","background-color:rgb(196,71,61);color:white;");
-    colorMap.insert("艳红","background-color:rgb(204,53,54);color:white;");
-    colorMap.insert("绛紫","background-color:rgb(112,77,78);color:white;");
-    colorMap.insert("浅血牙","background-color:rgb(234,205,209);color:white;");
-    colorMap.insert("紫藤灰","background-color:rgb(133,126,149);color:white;");
-    colorMap.insert("沙绿","background-color:rgb(0,91,90);color:white;");
-    colorMap.insert("鸭蛋青","background-color:rgb(209,227,219);color:white;");
-    colorMap.insert("柠檬黄","background-color:rgb(233,219,57);color:white;");
-    colorMap.insert("芦灰","background-color:rgb(169,176,143);color:white;");
-    colorMap.insert("油烟墨","background-color:rgb(63,63,60);color:white;");
-    colorMap.insert("米红","background-color:rgb(225,189,162);color:white;");
-    colorMap.insert("十样锦","background-color:rgb(252,177,170);color:white;");
-    for (const QString &item : colorMap.keys()) {
-        QLabel *page = new QLabel(test_case_19);
-        page->setStyleSheet(colorMap[item]);
-        page->setText(item);
-        page->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
-        page->setFont(QFont("微软雅黑", 18, QFont::Bold));
-        QPushButton *btn = new QPushButton(QString("下一个"),page);
-        btn->setFont(QFont("微软雅黑", 12, QFont::Bold));
-        btn->setFixedWidth(80);
-        btn->setStyleSheet("background-color:rgb(41,176,204);color:white;border:none;border-radius:1px;");
-        connect(btn, &QPushButton::clicked, test_case_19, &NBaseRotatingStackedWidget::nextPage);
-        test_case_19->addWidget(page);
+    // 取消所有按钮的选中状态
+    ui->btnLayout->setChecked(false);
+    ui->btnAnimation->setChecked(false);
+    ui->btnInput->setChecked(false);
+    ui->btnDisplay->setChecked(false);
+    ui->btnDialog->setChecked(false);
+    ui->btnIcon->setChecked(false);
+    ui->btnOther->setChecked(false);
+    
+    // 选中当前点击的按钮
+    QPushButton *senderButton = qobject_cast<QPushButton*>(sender());
+    if (senderButton) {
+        senderButton->setChecked(true);
+        
+        // 根据不同的分类显示不同的内容
+        if (senderButton == ui->btnLayout) {
+            showLayoutComponents();
+        } else if (senderButton == ui->btnAnimation) {
+            showAnimationComponents();
+        } else if (senderButton == ui->btnInput) {
+            showInputComponents();
+        } else if (senderButton == ui->btnDisplay) {
+            showDisplayComponents();
+        } else if (senderButton == ui->btnDialog) {
+            showDialogComponents();
+        } else if (senderButton == ui->btnIcon) {
+            showIconComponents();
+        } else if (senderButton == ui->btnOther) {
+            showOtherComponents();
+        }
     }
-
-    // 日志
-    ui->textBrowser->insertPlainText("翻转页面 测试用例,执行成功,三十秒后将会关闭……\r\n");
 }
 
-void NBaseUiKitTest::on_pushButton_20_clicked()
+void NBaseUiKitTest::clearContentLayout()
 {
-    // 触屏列表 测试用例
-    NTouchListWidget *test_case_20 = new NTouchListWidget();
-    test_case_20->setFixedSize(500,200);
-    test_case_20->setFlow(QListWidget::LeftToRight);
-    test_case_20->show();
-
-    // 插入测试数据
-    for(int index = 0;index != 200;index++) test_case_20->addItem(QString("测试项目:%1").arg(index));
-
-    // 十秒后关闭
-    QTimer::singleShot(30000, test_case_20, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText("触屏列表 测试用例,执行成功,三十秒后将会关闭……\r\n");
-}
-
-void NBaseUiKitTest::on_pushButton_21_clicked()
-{
-    // 验证码 测试用例
-    NBaseCaptcha test_case_21(0,200,50,6);
-    QLabel *test_case_21_w = new QLabel;
-    test_case_21_w->setPixmap(test_case_21.generateOneCaptcha());
-    test_case_21_w->move(x()+width()/2, y()+height()/2);
-    test_case_21_w->show();
-
-    // 十秒后关闭
-    QTimer::singleShot(10000, test_case_21_w, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText(tr("验证码 测试用例,执行成功,当前验证码为:(%1)十秒后将会关闭……\r\n").arg(test_case_21.getCurrentCaptcha()));
-}
-
-void NBaseUiKitTest::on_pushButton_22_clicked()
-{
-    // 图片截取的测试用例
-    NBaseImageCropper *test_case_22 = new NBaseImageCropper(nullptr,true,true);
-    test_case_22->setImage(":testImage");
-    test_case_22->setSize(400,600);
-    test_case_22->show();
-
-    // 十秒后关闭
-    QTimer::singleShot(30000, test_case_22, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText(tr("图片截取 测试用例,执行成功,三十秒后将会关闭……\r\n"));
-}
-
-void NBaseUiKitTest::on_pushButton_23_clicked()
-{
-    // switch按钮 测试用例
-    NBaseSwitchButton *test_case_23 = new NBaseSwitchButton;
-    test_case_23->show();
-
-    // 十秒后关闭
-    QTimer::singleShot(10000, test_case_23, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText(tr("switch按钮 测试用例,执行成功,十秒后将会关闭……\r\n"));
-}
-
-void NBaseUiKitTest::on_pushButton_24_clicked()
-{
-    // 卷轴widget 测试用例
-    NBaseReelWidget *test_case_24 = new NBaseReelWidget;
-    test_case_24->setOriPos(QPoint(x()+width()/2-250, y()+height()/2-150));
-    test_case_24->setOriSize(QSize(500,300));
-    test_case_24->setShowToolButton();
-    test_case_24->showExpan();
-
-    // 十秒后关闭
-    QTimer::singleShot(10000, test_case_24, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText(tr("卷轴widget 测试用例,执行成功,十秒后将会关闭……\r\n"));
-}
-
-void NBaseUiKitTest::on_pushButton_25_clicked()
-{
-    // 头像编辑 测试用例
-    NBaseLogoWidget *test_case_25 = new NBaseLogoWidget;
-    test_case_25->show();
-
-    // 日志
-    ui->textBrowser->insertPlainText(tr("头像widget 测试用例,执行成功\r\n"));
-}
-
-void NBaseUiKitTest::on_pushButton_26_clicked()
-{
-    // 点击波按钮 测试用例
-    NBaseClickWave *test_case_26 = new NBaseClickWave;
-    test_case_26->setClickColor(QColor(225,189,162));
-    test_case_26->setFixedSize(200,80);
-    test_case_26->show();
-
-    // 十秒后关闭
-    QTimer::singleShot(10000, test_case_26, &QObject::deleteLater);
-
-    // 日志
-    ui->textBrowser->insertPlainText(tr("点击波按钮 测试用例,执行成功,十秒后将会关闭……\r\n"));
-}
-
-void NBaseUiKitTest::on_pushButton_27_clicked()
-{
-    // 倒计数窗体
-    NBaseCountDown *test_case_27 = new NBaseCountDown(nullptr, 30);
-    test_case_27->setFixedSize(400,400);
-    test_case_27->startCountDown();
-    // 日志
-    ui->textBrowser->insertPlainText(tr("倒计数窗体 测试用例,执行成功,十秒后将会关闭……\r\n"));
-}
-
-void NBaseUiKitTest::on_pushButton_28_clicked()
-{
-    // QtAwesome 图标测试用例
-    QMainWindow *test_case_28 = new QMainWindow();
-    test_case_28->setMinimumSize(1200, 800);
-    test_case_28->setWindowTitle("图标测试");
-    
-    QWidget *centralWidget = new QWidget(test_case_28);
-    test_case_28->setCentralWidget(centralWidget);
-    
-    QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
-    
-    // 初始化 QtAwesome
-    fa::NFontAwesome *awesome = fa::NFontAwesome::instance();
-    awesome->initFontAwesome();
-    
-    // 创建状态栏
-    QStatusBar *statusBar = new QStatusBar(test_case_28);
-    test_case_28->setStatusBar(statusBar);
-    statusBar->showMessage("点击图标查看名称");
-    
-    // 创建标签页
-    QTabWidget *tabWidget = new QTabWidget(centralWidget);
-    mainLayout->addWidget(tabWidget);
-    
-    // 定义一些 Regular 风格的图标
-    static const QList<int> regularIconCodes = {
-        0xf111, 0xf004, 0xf005, 0xf1c9, 0xf249,
-        0xf058, 0xf057, 0xf059, 0xf05a, 0xf06a,
-        0xf06e, 0xf070, 0xf06e, 0xf075, 0xf02d,
-        0xf02e, 0xf118, 0xf119, 0xf07b, 0xf07c
-    };
-    
-    // 定义一些 Brands 风格的图标
-    static const QList<int> brandsIconCodes = {
-        0xf426, 0xf081, 0xf082, 0xf083, 0xf179,
-        0xf379, 0xf427, 0xf428, 0xf429, 0xf42a,
-        0xf099, 0xf09a, 0xf2ab, 0xf0ac, 0xf0ad
-    };
-    
-    // 创建单元格点击处理函数
-    auto onCellClicked = [=](int row, int column) {
-        QTableWidget *table = qobject_cast<QTableWidget*>(sender());
-        if (table) {
-            QTableWidgetItem *item = table->item(row, column);
-            if (item) {
-                QString iconName = item->data(Qt::UserRole).toString();
-                statusBar->showMessage(QString("图标名称: %1").arg(iconName));
-            }
+    // 清空内容布局
+    QLayoutItem *item;
+    while ((item = ui->contentLayout->takeAt(0)) != nullptr) {
+        if (item->widget()) {
+            delete item->widget();
         }
-    };
+        delete item;
+    }
+}
+
+void NBaseUiKitTest::showLayoutComponents()
+{
+    clearContentLayout();
     
-    // 创建填充表格的辅助函数
-    auto populateTable = [=](QTableWidget *table, int style) {
-        table->clearContents();
-        table->setRowCount(0);
-        
-        QList<QPair<QString, int>> iconList;
-        
-        if (style == fa::fa_regular) {
-            for (int code : regularIconCodes) {
-                iconList.append(qMakePair(QString("0x%1").arg(code, 0, 16), code));
-            }
-        }
-        else if (style == fa::fa_brands) {
-            for (int code : brandsIconCodes) {
-                iconList.append(qMakePair(QString("0x%1").arg(code, 0, 16), code));
-            }
-        }
-        else {
-            for (const QString &name : awesome->iconNames()) {
-                iconList.append(qMakePair(name, 0));
-            }
-        }
-        
-        int row = 0;
-        int col = 0;
-        for (const auto &iconInfo : iconList) {
-            QString name = iconInfo.first;
-            int code = iconInfo.second;
-            
-            QVariantMap options;
-            options.insert("style", style);
-            
-            QIcon icon;
-            if (code == 0) {
-                icon = awesome->icon(name, options);
-            } else {
-                icon = awesome->icon(code, options);
-            }
-            
-            QLabel *label = new QLabel();
-            label->setAlignment(Qt::AlignCenter);
-            label->setPixmap(icon.pixmap(48, 48));
-            label->setToolTip(name);
-            
-            if (row >= table->rowCount()) {
-                table->insertRow(row);
-            }
-            
-            table->setCellWidget(row, col, label);
-            
-            // 创建并设置item来存储图标名称
-            QTableWidgetItem *item = new QTableWidgetItem();
-            item->setData(Qt::UserRole, name);
-            table->setItem(row, col, item);
-            
-            col++;
-            if (col >= 6) {
-                col = 0;
-                row++;
-            }
-        }
-    };
+    // 添加标题和描述
+    QLabel *title = new QLabel("布局组件");
+    title->setObjectName("componentTitle");
+    ui->contentLayout->addWidget(title);
     
-    // 创建 Solid 标签页
-    QWidget *solidTab = new QWidget();
-    QVBoxLayout *solidLayout = new QVBoxLayout(solidTab);
-    QScrollArea *solidScroll = new QScrollArea();
-    solidScroll->setWidgetResizable(true);
-    QTableWidget *solidTable = new QTableWidget();
-    solidTable->setColumnCount(6);
-    solidTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    solidTable->verticalHeader()->setDefaultSectionSize(80);
-    solidTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    solidTable->setSelectionMode(QAbstractItemView::SingleSelection);
-    solidTable->setSelectionBehavior(QAbstractItemView::SelectItems);
-    solidTable->setFocusPolicy(Qt::NoFocus);
-    solidTable->setStyleSheet("QTableWidget::item:focus { outline: none; }");
-    QObject::connect(solidTable, &QTableWidget::cellClicked, onCellClicked);
-    solidScroll->setWidget(solidTable);
-    solidLayout->addWidget(solidScroll);
-    tabWidget->addTab(solidTab, QString("Solid (%1 图标)").arg(awesome->iconNames().size()));
+    QLabel *desc = new QLabel("提供各种布局方式和容器组件，用于构建复杂的界面布局。");
+    desc->setObjectName("componentDesc");
+    desc->setWordWrap(true);
+    ui->contentLayout->addWidget(desc);
     
-    // 创建 Regular 标签页
-    QWidget *regularTab = new QWidget();
-    QVBoxLayout *regularLayout = new QVBoxLayout(regularTab);
-    QScrollArea *regularScroll = new QScrollArea();
-    regularScroll->setWidgetResizable(true);
-    QTableWidget *regularTable = new QTableWidget();
-    regularTable->setColumnCount(6);
-    regularTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    regularTable->verticalHeader()->setDefaultSectionSize(80);
-    regularTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    regularTable->setSelectionMode(QAbstractItemView::SingleSelection);
-    regularTable->setSelectionBehavior(QAbstractItemView::SelectItems);
-    regularTable->setFocusPolicy(Qt::NoFocus);
-    regularTable->setStyleSheet("QTableWidget::item:focus { outline: none; }");
-    QObject::connect(regularTable, &QTableWidget::cellClicked, onCellClicked);
-    regularScroll->setWidget(regularTable);
-    regularLayout->addWidget(regularScroll);
-    tabWidget->addTab(regularTab, QString("Regular (%1 图标)").arg(regularIconCodes.size()));
+    // 可移动窗体
+    addComponent("NBaseMoveableWidget", "可移动的窗体组件，支持拖拽和工具栏", 
+                 "NBaseMoveableWidget *widget = new NBaseMoveableWidget();\n" 
+                 "widget->setFixedSize(400, 400);\n" 
+                 "widget->setShowToolButton();\n" 
+                 "widget->show();",
+                 []() {
+                     NBaseMoveableWidget *test = new NBaseMoveableWidget();
+                     QLabel label(test);
+                     label.setText("可移动窗体测试");
+                     test->setStyleSheet("background-color: rgba(0, 255, 0, 120);");
+                     test->setFixedSize(400, 400);
+                     test->setShowToolButton();
+                     test->show();
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
     
-    // 创建 Brands 标签页
-    QWidget *brandsTab = new QWidget();
-    QVBoxLayout *brandsLayout = new QVBoxLayout(brandsTab);
-    QScrollArea *brandsScroll = new QScrollArea();
-    brandsScroll->setWidgetResizable(true);
-    QTableWidget *brandsTable = new QTableWidget();
-    brandsTable->setColumnCount(6);
-    brandsTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    brandsTable->verticalHeader()->setDefaultSectionSize(80);
-    brandsTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    brandsTable->setSelectionMode(QAbstractItemView::SingleSelection);
-    brandsTable->setSelectionBehavior(QAbstractItemView::SelectItems);
-    brandsTable->setFocusPolicy(Qt::NoFocus);
-    brandsTable->setStyleSheet("QTableWidget::item:focus { outline: none; }");
-    QObject::connect(brandsTable, &QTableWidget::cellClicked, onCellClicked);
-    brandsScroll->setWidget(brandsTable);
-    brandsLayout->addWidget(brandsScroll);
-    tabWidget->addTab(brandsTab, QString("Brands (%1 图标)").arg(brandsIconCodes.size()));
+    // 弹出窗体
+    addComponent("NBasePopWidget", "弹出式窗体，从屏幕边缘滑入", 
+                 "NBasePopWidget *widget = new NBasePopWidget();\n" 
+                 "widget->setFixedSize(400, 400);\n" 
+                 "widget->showPopDialog();",
+                 []() {
+                     NBasePopWidget *test = new NBasePopWidget();
+                     test->setFixedHeight(400);
+                     test->setFixedWidth(400);
+                     test->setStyleSheet("background-color: rgb(170, 255, 255);");
+                     test->showPopDialog();
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
     
-    // 填充所有表格
-    populateTable(solidTable, fa::fa_solid);
-    populateTable(regularTable, fa::fa_regular);
-    populateTable(brandsTable, fa::fa_brands);
+    // 翻转页面
+    addComponent("NBaseRotatingStackedWidget", "支持3D翻转效果的页面切换组件", 
+                 "NBaseRotatingStackedWidget *widget = new NBaseRotatingStackedWidget();\n" 
+                 "widget->setFixedSize(400, 500);\n" 
+                 "widget->addWidget(page1);\n" 
+                 "widget->addWidget(page2);\n" 
+                 "widget->show();",
+                 []() {
+                     NBaseRotatingStackedWidget *test = new NBaseRotatingStackedWidget();
+                     test->setFixedSize(400, 500);
+                     test->show();
+                     
+                     QMap<QString, QString> colorMap;
+                     colorMap.insert("红色", "background-color:rgb(255, 0, 0);color:white;");
+                     colorMap.insert("绿色", "background-color:rgb(0, 255, 0);color:white;");
+                     colorMap.insert("蓝色", "background-color:rgb(0, 0, 255);color:white;");
+                     
+                     for (const QString &item : colorMap.keys()) {
+                         QLabel *page = new QLabel(test);
+                         page->setStyleSheet(colorMap[item]);
+                         page->setText(item);
+                         page->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                         page->setFont(QFont("微软雅黑", 18, QFont::Bold));
+                         QPushButton *btn = new QPushButton(QString("下一个"), page);
+                         btn->setFont(QFont("微软雅黑", 12, QFont::Bold));
+                         btn->setFixedWidth(80);
+                         btn->setStyleSheet("background-color:rgb(41,176,204);color:white;border:none;border-radius:1px;");
+                         connect(btn, &QPushButton::clicked, test, &NBaseRotatingStackedWidget::nextPage);
+                         test->addWidget(page);
+                     }
+                 });
     
-    test_case_28->show();
+    // 触屏列表
+    addComponent("NTouchListWidget", "支持触摸滑动的列表组件", 
+                 "NTouchListWidget *widget = new NTouchListWidget();\n" 
+                 "widget->setFixedSize(200, 500);\n" 
+                 "widget->addItem(\"测试项目1\");\n" 
+                 "widget->show();",
+                 []() {
+                     NTouchListWidget *test = new NTouchListWidget();
+                     test->setFixedSize(200, 500);
+                     test->show();
+                     
+                     for(int index = 0; index != 20; index++) {
+                         test->addItem(QString("测试项目:%1").arg(index));
+                     }
+                     
+                     QTimer::singleShot(10000, test, &QObject::deleteLater);
+                 });
+}
+
+void NBaseUiKitTest::showAnimationComponents()
+{
+    clearContentLayout();
     
-    // 日志
-    ui->textBrowser->insertPlainText("图标测试用例,执行成功……\r\n");
+    QLabel *title = new QLabel("动画效果");
+    title->setObjectName("componentTitle");
+    ui->contentLayout->addWidget(title);
+    
+    QLabel *desc = new QLabel("提供各种动画和过渡效果，增强用户界面的视觉体验。");
+    desc->setObjectName("componentDesc");
+    desc->setWordWrap(true);
+    ui->contentLayout->addWidget(desc);
+    
+    // 渐入渐出窗体
+    addComponent("NBaseFadeWidget", "支持渐入渐出动画效果的窗体", 
+                 "NBaseFadeWidget *widget = new NBaseFadeWidget();\n" 
+                 "widget->setFixedSize(400, 400);\n" 
+                 "widget->beginFadeShow(5);",
+                 []() {
+                     NBaseFadeWidget *test = new NBaseFadeWidget();
+                     QLabel label(test);
+                     label.setText("渐入渐出窗体测试");
+                     test->setFixedSize(400, 400);
+                     test->setStyleSheet("background-color: rgba(255, 0, 0, 120);");
+                     test->beginFadeShow(5);
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
+    
+    // 圆周运动
+    addComponent("NBaseCircleAnimationWidget", "实现圆周运动动画效果", 
+                 "NBaseCircleAnimationWidget *widget = new NBaseCircleAnimationWidget();\n" 
+                 "widget->setCircleInfo(\":miniImage\", 10);\n" 
+                 "widget->startAnimation();",
+                 []() {
+                     NBaseCircleAnimationWidget *test = new NBaseCircleAnimationWidget();
+                     test->setCircleInfo(":miniImage", 10);
+                     test->move(750, 200);
+                     test->show();
+                     test->startAnimation();
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
+    
+    // LED效果
+    addComponent("NBaseLEDWidget", "LED灯效果，支持跑马灯和闪光灯", 
+                 "NBaseLEDWidget *widget = new NBaseLEDWidget();\n" 
+                 "widget->setText(\"跑马灯效果\");\n" 
+                 "widget->setTimer(500);\n" 
+                 "widget->startEffect(true);",
+                 []() {
+                     NBaseLEDWidget *test = new NBaseLEDWidget();
+                     test->setFixedSize(300, 40);
+                     test->setText("我是跑马灯LED效果");
+                     test->setTimer(500);
+                     test->startEffect(true);
+                     test->show();
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
+    
+    // 跑马灯
+    addComponent("NBaseMarqueeLabel", "文字跑马灯效果", 
+                 "NBaseMarqueeLabel *label = new NBaseMarqueeLabel();\n" 
+                 "label->setText(\"跑马灯测试数据\");\n" 
+                 "label->setDirection(NBaseMarqueeLabel::RightToLeft);\n" 
+                 "label->start();",
+                 []() {
+                     NBaseMarqueeLabel *test = new NBaseMarqueeLabel();
+                     test->setText("我是跑马灯测试数据");
+                     test->setFont(QFont("Fixed", 20, QFont::Bold));
+                     test->setDirection(NBaseMarqueeLabel::RightToLeft);
+                     test->setInterval(50);
+                     test->start();
+                     test->show();
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
+    
+    // 点击波按钮
+    addComponent("NBaseClickWave", "点击时产生波纹效果的按钮", 
+                 "NBaseClickWave *button = new NBaseClickWave();\n" 
+                 "button->setClickColor(QColor(225, 189, 162));\n" 
+                 "button->setFixedSize(200, 80);\n" 
+                 "button->show();",
+                 []() {
+                     NBaseClickWave *test = new NBaseClickWave();
+                     test->setClickColor(QColor(225, 189, 162));
+                     test->setFixedSize(200, 80);
+                     test->show();
+                     QTimer::singleShot(10000, test, &QObject::deleteLater);
+                 });
+}
+
+void NBaseUiKitTest::showInputComponents()
+{
+    clearContentLayout();
+    
+    QLabel *title = new QLabel("输入控件");
+    title->setObjectName("componentTitle");
+    ui->contentLayout->addWidget(title);
+    
+    QLabel *desc = new QLabel("用于用户输入的各种控件组件。");
+    desc->setObjectName("componentDesc");
+    desc->setWordWrap(true);
+    ui->contentLayout->addWidget(desc);
+    
+    // 验证码
+    addComponent("NBaseCaptcha", "生成验证码图片", 
+                 "NBaseCaptcha captcha(0, 200, 50, 6);\n" 
+                 "QPixmap pixmap = captcha.generateOneCaptcha();\n" 
+                 "QString code = captcha.getCurrentCaptcha();",
+                 []() {
+                     NBaseCaptcha test(0, 200, 50, 6);
+                     QLabel *label = new QLabel;
+                     label->setPixmap(test.generateOneCaptcha());
+                     label->show();
+                     QTimer::singleShot(10000, label, &QObject::deleteLater);
+                 });
+    
+    // 图片截取
+    addComponent("NBaseImageCropper", "图片截取和编辑组件", 
+                 "NBaseImageCropper *cropper = new NBaseImageCropper(nullptr, true, true);\n" 
+                 "cropper->setImage(\":testImage\");\n" 
+                 "cropper->setSize(400, 600);\n" 
+                 "cropper->show();",
+                 []() {
+                     NBaseImageCropper *test = new NBaseImageCropper(nullptr, true, true);
+                     test->setImage(":testImage");
+                     test->setSize(400, 600);
+                     test->show();
+                     QTimer::singleShot(30000, test, &QObject::deleteLater);
+                 });
+    
+    // 开关按钮
+    addComponent("NBaseSwitchButton", "开关按钮组件", 
+                 "NBaseSwitchButton *button = new NBaseSwitchButton();\n" 
+                 "button->show();",
+                 []() {
+                     NBaseSwitchButton *test = new NBaseSwitchButton();
+                     test->show();
+                     QTimer::singleShot(10000, test, &QObject::deleteLater);
+                 });
+}
+
+void NBaseUiKitTest::showDisplayComponents()
+{
+    clearContentLayout();
+    
+    QLabel *title = new QLabel("显示控件");
+    title->setObjectName("componentTitle");
+    ui->contentLayout->addWidget(title);
+    
+    QLabel *desc = new QLabel("用于展示信息的各种控件组件。");
+    desc->setObjectName("componentDesc");
+    desc->setWordWrap(true);
+    ui->contentLayout->addWidget(desc);
+    
+    // 迷你窗体
+    addComponent("NBaseMiniAppWidget", "迷你应用窗体", 
+                 "NBaseMiniAppWidget *widget = new NBaseMiniAppWidget();\n" 
+                 "widget->setPixmap(QPixmap(\":miniImage\"));\n" 
+                 "widget->show();",
+                 []() {
+                     NBaseMiniAppWidget *test = new NBaseMiniAppWidget();
+                     test->setPixmap(QPixmap(":miniImage"));
+                     test->show();
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
+    
+    // 阴影窗体
+    addComponent("NBaseShadowWidget", "带阴影效果的窗体", 
+                 "NBaseShadowWidget *widget = new NBaseShadowWidget();\n" 
+                 "widget->setFixedSize(400, 400);\n" 
+                 "widget->show();",
+                 []() {
+                     NBaseShadowWidget *test = new NBaseShadowWidget();
+                     test->setFixedSize(400, 400);
+                     test->show();
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
+    
+    // 雪花标签
+    addComponent("NBaseSnowLabel", "雪花效果标签", 
+                 "NBaseSnowLabel *label = new NBaseSnowLabel();\n" 
+                 "label->setText(\"测试数据\");\n" 
+                 "label->show();",
+                 []() {
+                     NBaseSnowLabel *test = new NBaseSnowLabel();
+                     test->setText("我是测试数据");
+                     test->setFont(QFont("微软雅黑", 12, QFont::Bold));
+                     test->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                     test->setFixedSize(200, 50);
+                     test->show();
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
+    
+    // 圆形进度条
+    addComponent("NBaseRoundProgressBar", "圆形进度条组件", 
+                 "NBaseRoundProgressBar *progress = new NBaseRoundProgressBar();\n" 
+                 "progress->setOutlinePenWidth(8);\n" 
+                 "progress->setDataPenWidth(10);\n" 
+                 "progress->setValue(30);\n" 
+                 "progress->show();",
+                 []() {
+                     NBaseRoundProgressBar *test = new NBaseRoundProgressBar();
+                     test->setOutlinePenWidth(8);
+                     test->setDataPenWidth(10);
+                     test->setBarStyle(NBaseRoundProgressBar::StyleLine);
+                     test->setDecimals(0);
+                     test->setFixedSize(200, 200);
+                     test->show();
+                     test->setValue(30);
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
+    
+    // 阴影标签
+    addComponent("NBaseShadowLabel", "带阴影效果的标签", 
+                 "NBaseShadowLabel *label = new NBaseShadowLabel(\"测试数据\");\n" 
+                 "label->setFont(QFont(\"Fixed\", 25, QFont::Bold));\n" 
+                 "label->show();",
+                 []() {
+                     NBaseShadowLabel *test = new NBaseShadowLabel(" 我是刀刀亮测试数据 ");
+                     test->setFont(QFont("Fixed", 25, QFont::Bold));
+                     test->setFixedSize(400, 50);
+                     test->show();
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
+    
+    // 二维码
+    addComponent("NBaseQREncodeWidget", "二维码生成组件", 
+                 "NBaseQREncodeWidget *qr = new NBaseQREncodeWidget();\n" 
+                 "qr->setQrData(\"二维码内容\");\n" 
+                 "qr->setQrLogo(\":miniImage\");\n" 
+                 "qr->show();",
+                 []() {
+                     NBaseQREncodeWidget *test = new NBaseQREncodeWidget();
+                     test->resize(300, 300);
+                     test->setQrData("别扫了，没啥东西");
+                     test->setQrLogo(":miniImage");
+                     test->show();
+                     QTimer::singleShot(5000, test, &QObject::deleteLater);
+                 });
+}
+
+void NBaseUiKitTest::showDialogComponents()
+{
+    clearContentLayout();
+    
+    QLabel *title = new QLabel("对话框");
+    title->setObjectName("componentTitle");
+    ui->contentLayout->addWidget(title);
+    
+    QLabel *desc = new QLabel("各种弹窗和对话框组件。");
+    desc->setObjectName("componentDesc");
+    desc->setWordWrap(true);
+    ui->contentLayout->addWidget(desc);
+    
+    // 等待框
+    addComponent("NBaseWaitDialog", "等待对话框组件", 
+                 "NBaseWaitDialog *dialog = new NBaseWaitDialog(parent);\n" 
+                 "dialog->showWaitDialog();",
+                 []() {
+                     NBaseWaitDialog *test = new NBaseWaitDialog(nullptr, NBaseWaitDialog::ANDROIDSTYLE);
+                     test->showWaitDialog();
+                     QTimer::singleShot(15000, test, &QObject::deleteLater);
+                 });
+    
+    // 提示框
+    addComponent("NBaseToastr", "消息提示组件", 
+                 "NBaseToastr *toastr = new NBaseToastr(parent, \"提示消息\");\n" 
+                 "toastr->toastr();",
+                 [this]() {
+                     NBaseToastr *test = new NBaseToastr(this, "我是刀刀亮测试数据");
+                     test->toastr();
+                 });
+}
+
+void NBaseUiKitTest::showIconComponents()
+{
+    clearContentLayout();
+    
+    QLabel *title = new QLabel("图标库");
+    title->setObjectName("componentTitle");
+    ui->contentLayout->addWidget(title);
+    
+    QLabel *desc = new QLabel("集成了 QtAwesome 图标库，提供 2000+ 精美图标。");
+    desc->setObjectName("componentDesc");
+    desc->setWordWrap(true);
+    ui->contentLayout->addWidget(desc);
+    
+    // 图标测试
+    addComponent("NFontAwesome", "集成了 QtAwesome 图标库，提供 2000+ 精美图标",
+                 "// 初始化\n" 
+                 "fa::NFontAwesome *awesome = fa::NFontAwesome::instance();\n" 
+                 "awesome->initFontAwesome();\n\n" 
+                 "// 通过名称获取图标\n" 
+                 "QIcon icon = awesome->icon(\"home\");\n\n" 
+                 "// 通过编码获取图标\n" 
+                 "QIcon icon2 = awesome->icon(0xf015);",
+                 []() {
+                     // 完整的图标测试代码
+                     QMainWindow *test = new QMainWindow();
+                     test->setMinimumSize(1200, 800);
+                     test->setWindowTitle("QtAwesome 图标库测试");
+                      
+                     QWidget *centralWidget = new QWidget(test);
+                     test->setCentralWidget(centralWidget);
+                      
+                     QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
+                      
+                     fa::NFontAwesome *awesome = fa::NFontAwesome::instance();
+                     awesome->initFontAwesome();
+                      
+                     QStatusBar *statusBar = new QStatusBar(test);
+                     test->setStatusBar(statusBar);
+                     statusBar->showMessage("点击图标查看名称");
+                      
+                     QTabWidget *tabWidget = new QTabWidget(centralWidget);
+                     mainLayout->addWidget(tabWidget);
+                      
+                     // Solid 图标
+                     QWidget *solidTab = new QWidget();
+                     QVBoxLayout *solidLayout = new QVBoxLayout(solidTab);
+                     QScrollArea *solidScroll = new QScrollArea();
+                     solidScroll->setWidgetResizable(true);
+                     
+                     QTableWidget *solidTable = new QTableWidget();
+                     solidTable->setColumnCount(6);
+                     solidTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+                     solidTable->verticalHeader()->setDefaultSectionSize(80);
+                     solidTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+                     solidTable->setSelectionMode(QAbstractItemView::SingleSelection);
+                     solidTable->setSelectionBehavior(QAbstractItemView::SelectItems);
+                     solidTable->setFocusPolicy(Qt::NoFocus);
+                     solidTable->setStyleSheet("QTableWidget::item:focus { outline: none; }");
+                     
+                     // 填充 Solid 图标
+                     int solidRow = 0;
+                     int solidCol = 0;
+                     for (const QString &name : awesome->iconNames()) {
+                         QIcon icon = awesome->icon(name);
+                         QLabel *label = new QLabel();
+                         label->setAlignment(Qt::AlignCenter);
+                         label->setPixmap(icon.pixmap(48, 48));
+                         label->setToolTip(name);
+                         
+                         if (solidRow >= solidTable->rowCount()) {
+                             solidTable->insertRow(solidRow);
+                         }
+                         
+                         solidTable->setCellWidget(solidRow, solidCol, label);
+                         
+                         QTableWidgetItem *item = new QTableWidgetItem();
+                         item->setData(Qt::UserRole, name);
+                         solidTable->setItem(solidRow, solidCol, item);
+                         
+                         solidCol++;
+                         if (solidCol >= 6) {
+                             solidCol = 0;
+                             solidRow++;
+                         }
+                     }
+                     
+                     solidScroll->setWidget(solidTable);
+                     solidLayout->addWidget(solidScroll);
+                     tabWidget->addTab(solidTab, QString("Solid (%1 图标)").arg(awesome->iconNames().size()));
+                     
+                     // 连接点击信号
+                     QObject::connect(solidTable, &QTableWidget::cellClicked, [statusBar, solidTable](int row, int column) {
+                         QTableWidgetItem *item = solidTable->item(row, column);
+                         if (item) {
+                             QString iconName = item->data(Qt::UserRole).toString();
+                             statusBar->showMessage(QString("图标名称: %1").arg(iconName));
+                         }
+                     });
+                     
+                     test->show();
+                 });
+}
+
+void NBaseUiKitTest::showOtherComponents()
+{
+    clearContentLayout();
+    
+    QLabel *title = new QLabel("其他组件");
+    title->setObjectName("componentTitle");
+    ui->contentLayout->addWidget(title);
+    
+    QLabel *desc = new QLabel("未分类的实用组件。");
+    desc->setObjectName("componentDesc");
+    desc->setWordWrap(true);
+    ui->contentLayout->addWidget(desc);
+    
+    // 卷轴widget
+    addComponent("NBaseReelWidget", "卷轴效果的窗体", 
+                 "NBaseReelWidget *widget = new NBaseReelWidget();\n" 
+                 "widget->setOriPos(QPoint(100, 100));\n" 
+                 "widget->setOriSize(QSize(500, 300));\n" 
+                 "widget->showExpan();",
+                 []() {
+                     NBaseReelWidget *test = new NBaseReelWidget;
+                     test->setOriPos(QPoint(100, 100));
+                     test->setOriSize(QSize(500, 300));
+                     test->setShowToolButton();
+                     test->showExpan();
+                     QTimer::singleShot(10000, test, &QObject::deleteLater);
+                 });
+    
+    // 头像编辑
+    addComponent("NBaseLogoWidget", "头像编辑组件", 
+                 "NBaseLogoWidget *widget = new NBaseLogoWidget();\n" 
+                 "widget->show();",
+                 []() {
+                     NBaseLogoWidget *test = new NBaseLogoWidget;
+                     test->show();
+                 });
+    
+    // 倒计数
+    addComponent("NBaseCountDown", "倒计时组件", 
+                 "NBaseCountDown *widget = new NBaseCountDown(nullptr, 30);\n" 
+                 "widget->setFixedSize(400, 400);\n" 
+                 "widget->startCountDown();",
+                 []() {
+                     NBaseCountDown *test = new NBaseCountDown(nullptr, 30);
+                     test->setFixedSize(400, 400);
+                     test->startCountDown();
+                 });
+}
+
+void NBaseUiKitTest::addComponent(const QString &name, const QString &description, const QString &code, std::function<void()> demoFunction)
+{
+    QGroupBox *groupBox = new QGroupBox(name);
+    QVBoxLayout *layout = new QVBoxLayout(groupBox);
+    
+    // 组件描述
+    QLabel *descLabel = new QLabel(description);
+    descLabel->setWordWrap(true);
+    descLabel->setStyleSheet("font-size: 14px; color: #666; margin-bottom: 10px;");
+    layout->addWidget(descLabel);
+    
+    // 代码示例
+    QTextEdit *codeEdit = new QTextEdit();
+    codeEdit->setPlainText(code);
+    codeEdit->setReadOnly(true);
+    codeEdit->setFixedHeight(100);
+    layout->addWidget(codeEdit);
+    
+    // 演示按钮
+    QPushButton *demoButton = new QPushButton("运行演示");
+    demoButton->setObjectName("demoButton");
+    connect(demoButton, &QPushButton::clicked, this, [=]() {
+        demoFunction();
+        ui->statusBar->showMessage(QString("运行 %1 演示").arg(name));
+    });
+    
+    // 添加垂直弹簧 - 撑满下半部分空间
+    QSpacerItem *verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    layout->addItem(verticalSpacer);
+    
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+    buttonLayout->addStretch();
+    buttonLayout->addWidget(demoButton);
+    layout->addLayout(buttonLayout);
+    
+    // 限制组件大小，避免占满整个屏幕
+    groupBox->setMaximumWidth(800);
+    groupBox->setMaximumHeight(280);
+    
+    ui->contentLayout->addWidget(groupBox);
 }

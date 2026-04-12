@@ -13,10 +13,10 @@
 
 #define DEFULT_TOAST_STYLE "\
 QLabel{\
-    color:#FFFFFF;\
+    color:#000000;\
     font:18px;\
     font-weight:500;\
-    background-color:rgb(98,92,82,90);\
+    background-color:rgba(255,255,255,180);\
     padding:3px;\
     border-radius:2;\
 }\

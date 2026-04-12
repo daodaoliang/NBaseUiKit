@@ -1,367 +1,295 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>NBaseUiKitTest</class>
- <widget class="QWidget" name="NBaseUiKitTest">
+ <widget class="QMainWindow" name="NBaseUiKitTest">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>976</width>
-    <height>509</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>NBaseUiKit_test(daodaoliang)</string>
+   <string>NBaseUiKit 组件库</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QPushButton {
-	background-color: rgba(0, 170, 255, 100);
-	color:white;
-	font: 75 10pt &quot;微软雅黑&quot;;
-};
-</string>
-  </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="3">
-    <widget class="QPushButton" name="pushButton_11">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>二维码测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QPushButton" name="pushButton_9">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>LED(闪光灯)测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QPushButton" name="pushButton_7">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>LED(跑马灯)测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QPushButton" name="pushButton_10">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>跑马灯Label测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="3">
-    <widget class="QPushButton" name="pushButton_4">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>阴影窗体测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="5">
-    <widget class="QPushButton" name="pushButton_13">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>进度条(线性)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="6">
-    <widget class="QPushButton" name="pushButton_14">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>提示框(toastr)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="4">
-    <widget class="QPushButton" name="pushButton_12">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>进度条(甜甜圈)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0" colspan="7">
-    <widget class="QTextBrowser" name="textBrowser">
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 250, 250);</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>渐入渐出窗体测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QPushButton" name="pushButton_3">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>迷你窗体测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="6">
-    <widget class="QPushButton" name="pushButton_8">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>圆周运动窗体测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="4">
-    <widget class="QPushButton" name="pushButton_5">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>弹出窗体测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QPushButton" name="pushButton">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string>可移动窗体测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="pushButton_15">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>阴影文字Label测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="pushButton_16">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>等待框(box风格)测试</string>
-     </property>
-     <property name="flat">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="5">
-    <widget class="QPushButton" name="pushButton_6">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>snowlable窗体测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="4">
-    <widget class="QPushButton" name="pushButton_20">
-     <property name="text">
-      <string>触屏水平滚动测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="3">
-    <widget class="QPushButton" name="pushButton_18">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>触屏垂直滚动测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QPushButton" name="pushButton_17">
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>10</pointsize>
-       <italic>false</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>等待框(android风格)测试</string>
-     </property>
-     <property name="flat">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="5">
-    <widget class="QPushButton" name="pushButton_19">
-     <property name="text">
-      <string>反转窗体测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="6">
-    <widget class="QPushButton" name="pushButton_21">
-     <property name="text">
-      <string>验证码窗体测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QPushButton" name="pushButton_22">
-     <property name="text">
-      <string>图片截取测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QPushButton" name="pushButton_23">
-     <property name="text">
-      <string>switch按钮测试</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="2">
-    <widget class="QPushButton" name="pushButton_24">
-     <property name="text">
-      <string>卷轴widget</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="3">
-    <widget class="QPushButton" name="pushButton_25">
-     <property name="text">
-      <string>头像编辑</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="4">
-    <widget class="QPushButton" name="pushButton_26">
-     <property name="text">
-      <string>点击波按钮</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="5">
-    <widget class="QPushButton" name="pushButton_27">
-     <property name="text">
-      <string>倒计数窗体</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="6">
-    <widget class="QPushButton" name="pushButton_28">
-     <property name="text">
-      <string>Icon 图标测试</string>
-     </property>
-    </widget>
-   </item>
-  </layout>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QWidget" name="leftPanel" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>220</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>250</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget#leftPanel { background-color: #f8f9fa; border-right: 1px solid #e9ecef; }
+QPushButton#categoryButton { background-color: transparent; border: none; text-align: left; padding: 8px 16px; font-size: 14px; color: #495057; }
+QPushButton#categoryButton:hover { background-color: #e9ecef; }
+QPushButton#categoryButton:pressed { background-color: #dee2e6; }
+QPushButton#categoryButton:checked { background-color: #e3f2fd; color: #1976d2; }
+QScrollArea { background-color: transparent; border: none; }</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="titleLabel">
+         <property name="text">
+          <string>NBaseUiKit</string>
+         </property>
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>18</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QScrollArea" name="categoryScrollArea">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>218</width>
+            <height>600</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="categoryLayout">
+           <item>
+            <widget class="QPushButton" name="btnLayout">
+             <property name="text">
+              <string>布局组件</string>
+             </property>
+             <property name="objectName">
+              <string>categoryButton</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnAnimation">
+             <property name="text">
+              <string>动画效果</string>
+             </property>
+             <property name="objectName">
+              <string>categoryButton</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnInput">
+             <property name="text">
+              <string>输入控件</string>
+             </property>
+             <property name="objectName">
+              <string>categoryButton</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnDisplay">
+             <property name="text">
+              <string>显示控件</string>
+             </property>
+             <property name="objectName">
+              <string>categoryButton</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnDialog">
+             <property name="text">
+              <string>对话框</string>
+             </property>
+             <property name="objectName">
+              <string>categoryButton</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnIcon">
+             <property name="text">
+              <string>图标库</string>
+             </property>
+             <property name="objectName">
+              <string>categoryButton</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnOther">
+             <property name="text">
+              <string>其他组件</string>
+             </property>
+             <property name="objectName">
+              <string>categoryButton</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="rightPanel" native="true">
+      <property name="styleSheet">
+       <string notr="true">QWidget#rightPanel { background-color: white; }
+QLabel#componentTitle { font-size: 20px; font-weight: bold; color: #333; margin-bottom: 10px; }
+QLabel#componentDesc { font-size: 14px; color: #666; margin-bottom: 20px; }
+QGroupBox { border: 1px solid #e9ecef; border-radius: 4px; margin-top: 20px; }
+QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px 0 5px; font-weight: bold; color: #495057; }
+QPushButton#demoButton { background-color: #e3f2fd; color: #1976d2; border: 1px solid #bbdefb; border-radius: 4px; padding: 6px 12px; }
+QPushButton#demoButton:hover { background-color: #bbdefb; }
+QTextEdit { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 4px; font-family: Consolas, Monaco, monospace; font-size: 12px; }</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QScrollArea" name="contentScrollArea">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="contentWidget">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>950</width>
+            <height>700</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="contentLayout">
+           <item>
+            <widget class="QLabel" name="componentTitle">
+             <property name="text">
+              <string>欢迎使用 NBaseUiKit</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="componentDesc">
+             <property name="text">
+              <string>NBaseUiKit 是一个基于 Qt 6.11 开发的 UI 组件库，提供了丰富的界面组件和交互效果。
+
+左侧导航栏包含了所有组件的分类，点击分类可以查看相应的组件示例和使用说明。
+
+当前版本: v1.1.0.0</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="introGroupBox">
+             <property name="title">
+              <string>组件分类</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QLabel" name="categoryIntro">
+                <property name="text">
+                 <string>• 布局组件 - 提供各种布局方式和容器
+• 动画效果 - 各种动画和过渡效果
+• 输入控件 - 表单输入相关组件
+• 显示控件 - 用于展示信息的组件
+• 对话框 - 各种弹窗和对话框
+• 图标库 - QtAwesome 图标库
+• 其他组件 - 未分类的实用组件</string>
+                 </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="sizeGripEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QStatusBar { background-color: #f8f9fa; border-top: 1px solid #e9ecef; }</string>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="example_resources.qrc"/>
+  <include location="image_resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

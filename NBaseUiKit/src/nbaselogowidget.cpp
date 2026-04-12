@@ -2,7 +2,6 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QCoreApplication>
-#include "nbasetoastr.h"
 
 NBaseLogoWidget::NBaseLogoWidget(QWidget *parent) : QLabel(parent)
 {

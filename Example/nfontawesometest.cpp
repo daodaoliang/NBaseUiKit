@@ -288,5 +288,5 @@ void NFontAwesomeTest::styleChanged(int index)
         }
     }
     
-    mUi->statusBar()->showMessage(QString("当前显示: %1 个图标").arg(model->rowCount()));
+    mUi->statusBar->showMessage(QString("当前显示: %1 个图标").arg(model->rowCount()));
 }
